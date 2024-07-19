@@ -8,12 +8,12 @@
     <div class="signin-header">
         <div class="row align-items-center">
             <div class="col-md-6">
-                <a href="{{route('home')}}" class="site-logo"><img src="./assets/images/logo/logo.png" alt="logo"></a>
+                <a href="{{route('/')}}" class="site-logo"><img src="./assets/images/logo/logo.png" alt="logo"></a>
             </div>
             <div class="col-md-6">
                 <div class="singin-header-btn">
                     <p>Already a member?</p>
-                    <a href="{{route('auth.login')}}" class="axil-btn btn-bg-secondary sign-up-btn">Sign In</a>
+                    <a href="{{route('login')}}" class="axil-btn btn-bg-secondary sign-up-btn">Sign In</a>
                 </div>
             </div>
         </div>
@@ -53,6 +53,10 @@
                         <div class="form-group">
                             <label>Password</label>
                             <input type="password" class="form-control" name="password" value="hazbri" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Confirm password</label>
+                            <input type="password" class="form-control" name="password_confirmation" value="hazbri" required>
                         </div>
                         <div class="form-group">
                             <label>Phone number</label>

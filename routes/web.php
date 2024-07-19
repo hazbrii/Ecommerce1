@@ -6,7 +6,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Client\HomeController;
 use Illuminate\Http\Request;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
+
  
 
 
@@ -24,31 +24,9 @@ Route::get('/dashboard', function () {
 
 
 
-// Route::post('/login',[LoginController::class,'login'])->name('login');
-// Route::get('/logout',[LoginController::class,'logout'])->name('logout');
-// Route::get('/',[LoginController::class,'show'])->name('auth.login');
-// Route::post('/register',[RegisterController::class,'register'])->name('register');
-// Route::get('/registration',[RegisterController::class,'show'])->name('auth.register');
-Route::get('/home',[HomeController::class,'show'])->name('home');
+
+Route::get('/',[HomeController::class,'show'])->name('/');
 
 
-
-Route::get('/email/verify', function () {
-return view('auth.verify-email');
-})->name('verification.notice');
-
-
-
-Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-    $request->fulfill();
- 
-    return redirect('/');
-})->name('verification.verify');
-
- 
-Route::post('/email/verification-notification', function (Request $request) {
-    $request->user()->sendEmailVerificationNotification();
-    return back()->with('message', 'Verification link sent!');
-})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
 require __DIR__.'/auth.php';

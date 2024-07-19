@@ -7,12 +7,12 @@
         <div class="signin-header">
             <div class="row align-items-center">
                 <div class="col-sm-4">
-                    <a href="{{route('home')}}" class="site-logo"><img src="./assets/images/logo/logo.png" alt="logo"></a>
+                    <a href="{{route('/')}}" class="site-logo"><img src="./assets/images/logo/logo.png" alt="logo"></a>
                 </div>
                 <div class="col-sm-8">
                     <div class="singin-header-btn">
                         <p>Not a member?</p>
-                        <a href="{{route('auth.register')}}" class="axil-btn btn-bg-secondary sign-up-btn">Sign Up Now</a>
+                        <a href="{{route('register')}}" class="axil-btn btn-bg-secondary sign-up-btn">Sign Up Now</a>
                     </div>
                 </div>
             </div>

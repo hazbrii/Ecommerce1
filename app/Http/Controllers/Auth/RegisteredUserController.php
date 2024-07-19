@@ -40,7 +40,7 @@ class RegisteredUserController extends Controller
         $request->validate([
             'fullname' => ['required','max:100'],
             'email' => ['required', 'email', 'unique:users,email'],
-            'password' => ['required', 'min : 6', 'max:20'],
+            'password' => ['required', 'confirmed', 'min : 6', 'max:20'],
             'phone_number' => ['required'],
             'address' => ['required'],
             'gouvernorat' => ['required'],
@@ -57,8 +57,7 @@ class RegisteredUserController extends Controller
         ]);
         
         event(new Registered($user));
-        // Auth::login($user);
-        return redirect(route('/'));
-        // return redirect(route('login', absolute: false));
+        Auth::login($user);
+        return redirect(route('login', absolute: false));
     }
 }
