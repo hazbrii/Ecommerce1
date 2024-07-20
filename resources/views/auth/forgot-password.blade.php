@@ -1,25 +1,48 @@
-<x-guest-layout>
-    <div class="mb-4 text-sm text-gray-600">
-        {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
+@extends('layouts.master')
+@section('title') Forget Password @endsection
+@section('content')
+<body>
+    <div class="axil-signin-area">
+
+        <!-- Start Header -->
+        <div class="signin-header">
+            <div class="row align-items-center">
+                <div class="col-xl-4 col-sm-6">
+                    <a href="{{route('/')}}" class="site-logo"><img src="./assets/images/logo/logo-large.png" alt="logo"></a>
+                </div>
+                <div class="col-md-2 d-lg-block d-none">
+                    <a href="{{route('login')}}" class="back-btn"><i class="far fa-angle-left"></i></a>
+                </div>
+
+            </div>
+        </div>
+        <!-- End Header -->
+
+        <div class="row">
+            <div class="col-xl-4 col-lg-6">
+                <div class="axil-signin-banner bg_image bg_image--10">
+                    <h3 class="title">We Offer the Best Products</h3>
+                </div>
+            </div>
+            <div class="col-lg-6 offset-xl-2">
+                <div class="axil-signin-form-wrap">
+                    <div class="axil-signin-form">
+                        <h3 class="title">Forgot Password?</h3>
+                        <p class="b2 mb--55">Enter the email address you used when you joined and we’ll send you instructions to reset your password.</p>
+                        <form class="singin-form" method='post' action="{{route('password.email')}}">
+                            @csrf
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" class="form-control" name="email" value="name@example.com">
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="axil-btn btn-bg-primary submit-btn">Send Reset Instructions</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
-
-    <form method="POST" action="{{ route('password.email') }}">
-        @csrf
-
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button>
-                {{ __('Email Password Reset Link') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+    @endsection

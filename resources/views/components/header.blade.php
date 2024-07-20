@@ -1,5 +1,7 @@
 <header class="header axil-header header-style-4">
-        <div class="header-top-campaign">
+
+        <!-- for discount -->
+        <!-- <div class="header-top-campaign">
             <div class="container position-relative">
                 <div class="campaign-content">
                     <div class="campaign-countdown"></div>
@@ -7,7 +9,7 @@
                 </div>
             </div>
             <button class="remove-campaign"><i class="fal fa-times"></i></button>
-        </div>
+        </div> -->
         <!-- Start Header Top Area  -->
         <div class="axil-header-top">
             <div class="container">
@@ -85,8 +87,8 @@
                                                 <a href="#">Language</a>
                                             </li>
                                         </ul>
-                                        <a href="sign-in.html" class="axil-btn btn-bg-primary">Login</a>
-                                        <div class="reg-footer text-center">No account yet? <a href="sign-up.html" class="btn-link">REGISTER HERE.</a></div>
+                                        <a href="{{route('login')}}" class="axil-btn btn-bg-primary">Login</a>
+                                        <div class="reg-footer text-center">No account yet? <a href="{{route('register')}}" class="btn-link">REGISTER HERE.</a></div>
                                     </div>
                                 </li>
                                 <li class="axil-mobile-toggle">
