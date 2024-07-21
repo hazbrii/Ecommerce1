@@ -44,7 +44,7 @@
                         @csrf
                         <div class="form-group">
                             <label>Fullname</label>
-                            <input type="text" class="form-control" name="fullname" value="hazbri">
+                            <input type="text" class="form-control" name="fullname" value="hazbri" required>
                         </div>
                         <div class="form-group">
                             <label>Email</label>
@@ -70,7 +70,6 @@
                             <label>Gouvernorat</label>
                             <input type="text" class="form-control" name="gouvernorat" value="Nabeul" required>
                         </div>
-
                         <div class="form-group">
                             <button type="submit" class="axil-btn btn-bg-primary submit-btn">Create Account</button>
                         </div>

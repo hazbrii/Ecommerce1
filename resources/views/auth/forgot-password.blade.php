@@ -29,11 +29,21 @@
                     <div class="axil-signin-form">
                         <h3 class="title">Forgot Password?</h3>
                         <p class="b2 mb--55">Enter the email address you used when you joined and we’ll send you instructions to reset your password.</p>
+                        @if ($errors->any())
+                                <div class="alert alert-danger ">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                        @endif
+                        
                         <form class="singin-form" method='post' action="{{route('password.email')}}">
                             @csrf
                             <div class="form-group">
                                 <label>Email</label>
-                                <input type="email" class="form-control" name="email" value="name@example.com">
+                                <input type="email" class="form-control" name="email" value="name@example.com" required>
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="axil-btn btn-bg-primary submit-btn">Send Reset Instructions</button>

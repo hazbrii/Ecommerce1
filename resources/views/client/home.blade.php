@@ -1,9 +1,8 @@
 @extends('layouts.app')
 @section('title') Home @endsection
 @section('content')
-    <a href="#top" class="back-to-top" id="backto-top"><i class="fal fa-arrow-up"></i></a>
     
-
+    <a href="#top" class="back-to-top" id="backto-top"><i class="fal fa-arrow-up"></i></a>
     <main class="main-wrapper">
         <!-- Start Slider Area -->
         <div class="axil-main-slider-area main-slider-style-7 bg_image--8">

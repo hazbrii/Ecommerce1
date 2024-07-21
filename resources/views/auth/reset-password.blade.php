@@ -29,7 +29,16 @@
                 <div class="axil-signin-form-wrap">
                     <div class="axil-signin-form">
                         <h3 class="title mb--35">Reset Password</h3>
-                        <form method='post' action="{{ route('password.store') }}" class="singin-form" >
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        <form method='post' action="{{ route('password.store') }}" class="singin-form mt-2" >
                             @csrf
                             <input type="hidden" name="token" value="{{ $request->route('token') }}">
                             <input type="hidden" name="email" value="{{ $request->email  }}" >

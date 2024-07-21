@@ -40,10 +40,10 @@
                     </div>
                     <div class="col-md-4 col-5">
                         <div class="header-brand">
-                            <a href="index.html" class="logo logo-dark">
+                            <a href="{{route('/')}}" class="logo logo-dark">
                                 <img src="assets/images/logo/logo.png" alt="Site Logo">
                             </a>
-                            <a href="index.html" class="logo logo-light">
+                            <a href="{{route('/')}}" class="logo logo-light">
                                 <img src="assets/images/logo/logo-light.png" alt="Site Logo">
                             </a>
                         </div>
@@ -67,15 +67,18 @@
                                         <i class="flaticon-shopping-cart"></i>
                                     </a>
                                 </li>
+                                @auth
                                 <li class="my-account">
                                     <a href="javascript:void(0)">
                                         <i class="flaticon-person"></i>
                                     </a>
                                     <div class="my-account-dropdown">
-                                        <span class="title">QUICKLINKS</span>
+                                        <!-- <span class="title">QUICKLINKS</span> -->
+                                        
                                         <ul>
+                                            
                                             <li>
-                                                <a href="my-account.html">My Account</a>
+                                                <a href="{{route('profile.edit')}}">My Account</a>
                                             </li>
                                             <li>
                                                 <a href="#">Initiate return</a>
@@ -86,11 +89,24 @@
                                             <li>
                                                 <a href="#">Language</a>
                                             </li>
+                                            
                                         </ul>
-                                        <a href="{{route('login')}}" class="axil-btn btn-bg-primary">Login</a>
-                                        <div class="reg-footer text-center">No account yet? <a href="{{route('register')}}" class="btn-link">REGISTER HERE.</a></div>
+                                        
+                                        
                                     </div>
                                 </li>
+                                @endauth
+                                @guest
+                                <li>
+                                    <a href="{{ route('login') }}" class="axil-btn btn-bg-primary" style="font-size: 18px; padding: 5px 10px;">Login</a>
+                                </li>
+                                <li>
+                                <div class="text-center">
+                                    No account yet? <a href="{{route('register')}}" class="btn-link">REGISTER HERE.</a>
+                                </div>
+                                </li>
+                                        
+                                @endguest
                                 <li class="axil-mobile-toggle">
                                     <button class="menu-btn mobile-nav-toggler">
                                         <i class="flaticon-menu-2"></i>
@@ -114,12 +130,13 @@
                         <nav class="mainmenu-nav">
                             <button class="mobile-close-btn mobile-nav-toggler"><i class="fas fa-times"></i></button>
                             <div class="mobile-nav-brand">
-                                <a href="index.html" class="logo">
+                                <a href="{{route('/')}}" class="logo">
                                     <img src="assets/images/logo/logo.png" alt="Site Logo">
                                 </a>
                             </div>
                             <ul class="mainmenu">
-                                <li class="menu-item-has-children">
+                                <li><a href="{{route('/')}}">Home</a></li>
+                                <!-- <li class="menu-item-has-children">
                                     <a href="#">Home</a>
                                     <ul class="axil-submenu">
                                         <li><a href="index-1.html">Home - Electronics</a></li>
@@ -130,8 +147,9 @@
                                         <li><a href="index-7.html">Home - Multipurpose</a></li>
                                         <li><a href="https://new.axilthemes.com/demo/template/etrade-rtl/">RTL Version</a></li>
                                     </ul>
-                                </li>
-                                <li class="menu-item-has-children">
+                                </li> -->
+                                <li><a href="shop-sidebar.html">Shop</a></li>
+                                <!-- <li class="menu-item-has-children">
                                     <a href="#">Shop</a>
                                     <ul class="axil-submenu">
                                         <li><a href="shop-sidebar.html">Shop With Sidebar</a></li>
@@ -145,26 +163,28 @@
                                         <li><a href="single-product-7.html">Product Variation 7</a></li>
                                         <li><a href="single-product-8.html">Product Variation 8</a></li>
                                     </ul>
-                                </li>
+                                </li> -->
+                                
                                 <li class="menu-item-has-children">
-                                    <a href="#">Pages</a>
+                                    <a href="#">Categories</a>
                                     <ul class="axil-submenu">
-                                        <li><a href="wishlist.html">Wishlist</a></li>
-                                        <li><a href="cart.html">Cart</a></li>
-                                        <li><a href="checkout.html">Checkout</a></li>
-                                        <li><a href="my-account.html">Account</a></li>
-                                        <li><a href="sign-up.html">Sign Up</a></li>
-                                        <li><a href="sign-in.html">Sign In</a></li>
-                                        <li><a href="forgot-password.html">Forgot Password</a></li>
-                                        <li><a href="reset-password.html">Reset Password</a></li>
-                                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                                        <li><a href="coming-soon.html">Coming Soon</a></li>
-                                        <li><a href="404.html">404 Error</a></li>
-                                        <li><a href="typography.html">Typography</a></li>
+                                        <li><a href="#">Barette</a></li>
+                                        <li><a href="#">Base metals</a></li>
+                                        <li><a href="#">Estate Jawellery</a></li>
+                                        <li><a href="#">Foilbacks</a></li>
+                                        <li><a href="#">Kalabubu</a></li>
+                                        <li><a href="#">Medallion</a></li>
+                                        <li><a href="#">Nawarat Ring</a></li>
+                                        <li><a href="#">Anklet</a></li>
+                                        <li><a href="#">Pledge Pins</a></li>
+                                        <li><a href="#">Prayer Jewellery</a></li>
+                                        <li><a href="#">Slave Bracelet</a></li>
+                                        
                                     </ul>
                                 </li>
                                 <li><a href="about-us.html">About</a></li>
-                                <li class="menu-item-has-children">
+                                <li><a href="blog.html">Blog</a></li>
+                                <!-- <li class="menu-item-has-children">
                                     <a href="#">Blog</a>
                                     <ul class="axil-submenu">
                                         <li><a href="blog.html">Blog List</a></li>
@@ -175,7 +195,7 @@
                                         <li><a href="blog-audio.html">Audio Post</a></li>
                                         <li><a href="blog-quote.html">Quote Post</a></li>
                                     </ul>
-                                </li>
+                                </li> -->
                                 <li><a href="contact.html">Contact</a></li>
                             </ul>
                         </nav>

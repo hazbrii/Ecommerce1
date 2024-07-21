@@ -31,7 +31,19 @@
                     <div class="axil-signin-form">
                         <h3 class="title">Sign in to eTrade.</h3>
                         <p class="b2 mb--55">Enter your detail below</p>
-                        <form action="{{route('login')}}" method='post' class="singin-form">
+                        
+                            @if ($errors->any())
+                                <div class="alert alert-danger ">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                        
+                        
+                        <form action="{{route('login')}}" method='post' class="singin-form mt-3">
                             @csrf
                             <div class="form-group">
                                 <label>Email</label>
