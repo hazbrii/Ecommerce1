@@ -37,4 +37,20 @@ class ConfirmablePasswordController extends Controller
 
         return redirect()->intended(route('dashboard', absolute: false));
     }
+    public function validatePassword(Request $request)
+    {
+        $request->validate([
+            'password' => 'required|string',
+        ]);
+
+        // Retrieve the stored hashed password for the authenticated user
+        $storedPasswordHash = Auth::user()->password;
+
+        // Check if the provided password matches the stored hashed password
+        if (Hash::check($request->input('password'), $storedPasswordHash)) {
+            return response()->json(['status' => 'Password is valid']);
+        } else {
+            return response()->json(['error' => 'Invalid password'], 400);
+        }
+    }
 }

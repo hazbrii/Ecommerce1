@@ -37,14 +37,24 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        
         $request->validate([
             'fullname' => ['required','max:100'],
             'email' => ['required', 'email', 'unique:users,email'],
-            'password' => ['required', 'confirmed', 'min : 6', 'max:20'],
+            'password' => ['required', 'confirmed', 'min:6', 'max:20'],
             'phone_number' => ['required'],
             'address' => ['required'],
             'gouvernorat' => ['required'],
+            'role' => ['nullable', 'in:1,0'], // '1' for admin, '0' for client
+            'admin_key' => ['nullable','required_if:role,1'], // Admin key required if role is admin
         ]);
+
+        $adminKey = 'khatoun';
+
+        if ($request->role == 1 && $request->admin_key !== $adminKey) {
+            return back()->withErrors(['admin_key' => 'Invalid admin key.']);
+        }
+        $role = $request->has('role') ? 1 : 0;
 
         $user = User::create([
             'fullname'=> $request->fullname ,
@@ -53,11 +63,12 @@ class RegisteredUserController extends Controller
             'phone_number'=> $request->phone_number ,
             'address'=> $request->address ,
             'gouvernorat'=> $request->gouvernorat ,
-            'role' => 0,
+            'role'=>$role
+
         ]);
-        
+
         event(new Registered($user));
         Auth::login($user);
-        return redirect('/');
+        return redirect(route('verification.notice'));
     }
 }

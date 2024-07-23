@@ -19,7 +19,7 @@
         </div>
     </div>
     <!-- End Header -->
-
+    
     <div class="row">
         <div class="col-xl-4 col-lg-6">
             <div class="axil-signin-banner bg_image bg_image--10">
@@ -30,9 +30,9 @@
             <div class="axil-signin-form-wrap">
                 <div class="axil-signin-form">
                     <h3 class="title">I'm New Here</h3>
-                    <p class="b2 mb--55">Enter your detail below</p>
+                    <p class="b2 mb--2">Enter your detail below</p>
                     @if ($errors->any())
-                        <div class="alert alert-danger my-4">
+                        <div class="alert alert-danger my-2">
                             <ul>
                                 @foreach ($errors->all() as $error)
                                     <li>{{ $error }}</li>
@@ -40,8 +40,9 @@
                             </ul>
                         </div>
                     @endif
-                    <form method='post' action="{{route('register')}}" class='mt-3'>
+                    <form method='post' action="{{route('register')}}" class='my-5'>
                         @csrf
+                        
                         <div class="form-group">
                             <label>Fullname</label>
                             <input type="text" class="form-control" name="fullname" value="hazbri" required>
@@ -68,10 +69,28 @@
                         </div>
                         <div class="form-group">
                             <label>Gouvernorat</label>
-                            <input type="text" class="form-control" name="gouvernorat" value="Nabeul" required>
+                            <select name='gouvernorat' class="form-select-lg">
+                                <option value="Nabeul">Nabeul</option>
+                                <option value="Tunis">Tunis</option>
+                                <option value="Ben Arous">Ben Arous</option>
+                                <option value="Kef">Kef</option>
+                            </select>
                         </div>
+
+                        <div class="form-check my-5">
+                            <input class="form-check-input" type="checkbox"  value="1"  name="role" id='role'>
+                            <label class="form-check-label" for="role">
+                                Registre for Admin : 
+                            </label>
+                        </div>
+                        
+                        <div class="form-group" style='display:none' id='admin-key'>
+                            <label>Admin key</label>
+                            <input type="text" class="form-control" name="admin_key" value="khatoun"  required>
+                        </div>
+                        
                         <div class="form-group">
-                            <button type="submit" class="axil-btn btn-bg-primary submit-btn">Create Account</button>
+                            <button type="submit" class="axil-btn btn-bg-primary submit-btn ">Create Account</button>
                         </div>
                     </form>
                 </div>
@@ -79,3 +98,19 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var roleCheckbox = document.getElementById('role');
+        var adminKeyField = document.getElementById('admin-key');
+
+        roleCheckbox.addEventListener('change', function() {
+            if (this.checked) {
+                adminKeyField.style.display = 'block';
+            } else {
+                adminKeyField.style.display = 'none';
+            }
+        });
+    });
+</script>
