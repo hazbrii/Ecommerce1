@@ -48,7 +48,7 @@
                     </div>
                     <div class="form-group">
                         <label>Confirm New Password</label>
-                        <input type="password" class="form-control" name='new_password_confirmation'  >
+                        <input type="password" class="form-control" name='password_confirmation'  >
                     </div>
                     @if ($errors->any())
                         <div class="alert alert-danger ">

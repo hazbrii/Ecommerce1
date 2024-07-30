@@ -1,14 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Client\HomeController;
+use App\Http\Controllers\Client\ContactController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Http\Request;
 
- 
+Route::get('/contact',[ContactController::class,'show']);
+
 
 
 Route::middleware('auth')->group(function () {
@@ -18,15 +19,16 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 
 
 
 
 Route::get('/',[HomeController::class,'show'])->name('/');
+
 
 
 
