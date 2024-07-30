@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Hash;
 
 class ProfileController extends Controller
 {
@@ -24,17 +25,32 @@ class ProfileController extends Controller
     /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function update(Request $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        
+        $user = Auth::user();
+        
+        $validatedData = $request->validate([
+            'gouvernorat' => ['required', 'string', 'max:100'],
+            'address' => ['required', 'string', 'max:100'],
+            'old_password' => ['required', 'string', 'min:6'],
+            'password' => ['nullable', 'string', 'min:6', 'confirmed'],
+        ]);
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+       
+        if (!Hash::check($request->old_password, $user->password)) {
+            return back()->withErrors(['old_password' => 'Incorrect password.']);
         }
 
-        $request->user()->save();
+        $user->gouvernorat = $validatedData['gouvernorat'];
+        $user->address = $validatedData['address'];
+        if ($request->filled('password')) {
+            $user->password = Hash::make($validatedData['password']);
+        }
+        
+        $user->save();
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return back()->with('status', 'profile-updated');
     }
 
     /**
@@ -56,5 +72,16 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
         
         return Redirect::to('/login');
+    }
+    public function updateTab(Request $request)
+    {
+        // Validate and store the active tab in the session
+        $request->validate([
+            'active_tab' => 'required|string|in:dashboard,orders,address,account',
+        ]);
+
+        session(['active_tab' => $request->input('active_tab')]);
+
+        return redirect()->route('profile');
     }
 }

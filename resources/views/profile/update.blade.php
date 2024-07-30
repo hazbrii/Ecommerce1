@@ -10,7 +10,12 @@
                         <input type="text" class="form-control" name='fullname' value="{{$user->fullname}}" readonly>
                     </div>
                 </div>
-                
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" class="form-control" name='email' value='{{$user->email}}' readonly>
+                    </div>
+                </div>
                 <div class="col-12">
                     <div class="form-group mb--40">
                         <label>Gouvernorat</label>
@@ -28,7 +33,9 @@
                         <label>Address</label>
                         <input type="text" class="form-control" name='address' value="{{$user->address}}" required>
                     </div>
+                    
                 </div>
+                
                 <div class="col-12">
                     <h5 class="title">Password Change</h5>
                     <div class="form-group">
@@ -37,19 +44,26 @@
                     </div>
                     <div class="form-group">
                         <label>New Password</label>
-                        <input type="password" class="form-control" name='password' value='123456' required>
+                        <input type="password" class="form-control" name='password'  >
                     </div>
                     <div class="form-group">
                         <label>Confirm New Password</label>
-                        <input type="password" class="form-control" name='password_confirmation' value='123456' required>
+                        <input type="password" class="form-control" name='new_password_confirmation'  >
                     </div>
-                    
+                    @if ($errors->any())
+                        <div class="alert alert-danger ">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <div class="form-group mb--0">
                         <input type="submit" class="axil-btn btn-primary" value="Save Changes">
                     </div>
                 </div>
             </div>
-            
         </form>
     </div>
 </div>

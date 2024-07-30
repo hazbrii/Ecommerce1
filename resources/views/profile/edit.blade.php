@@ -3,7 +3,6 @@
 @section('content')
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <body class="sticky-header">
-
     <a href="#top" class="back-to-top" id="backto-top"><i class="fal fa-arrow-up"></i></a>
     <main class="main-wrapper">
         <!-- Start Breadcrumb Area  -->
@@ -45,17 +44,18 @@
                             </div>
                         </div>
                     </div>
+                    
                     <div class="row">
                         <div class="col-xl-3 col-md-4">
                             <aside class="axil-dashboard-aside">
                                 <nav class="axil-dashboard-nav">
                                     <div class="nav nav-tabs" role="tablist">
-                                        <a class="nav-item nav-link active" data-bs-toggle="tab" href="#nav-dashboard" role="tab" aria-selected="true"><i class="fas fa-th-large"></i>Dashboard</a>
-                                        <a class="nav-item nav-link" data-bs-toggle="tab" href="#nav-orders" role="tab" aria-selected="false"><i class="fas fa-shopping-basket"></i>Orders</a>
-                                        <a class="nav-item nav-link" data-bs-toggle="tab" href="#nav-address" role="tab" aria-selected="false"><i class="fas fa-home"></i>Address</a>
-                                        <a class="nav-item nav-link" data-bs-toggle="tab" href="#nav-account" role="tab" aria-selected="false"><i class="fas fa-user"></i>Account Details</a>
-                                        <a class="nav-item nav-link" data-bs-toggle="tab" href='#' role="tab" aria-selected="false" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fas fa-sign-out"></i>Logout</a>
-                                        <a class="nav-item nav-link" data-bs-toggle="tab" href='#' role="tab" aria-selected="false" onclick="confirmation(event)" style='color : red'><i class="fas fa-trash"></i>Delete profile</a>
+                                        <a class="nav-item nav-link active" data-bs-toggle="tab" href="#nav-dashboard" role="tab" aria-selected="true"><i class="fas fa-th-large" ></i>Dashboard</a>
+                                        <a class="nav-item nav-link " data-bs-toggle="tab" href="#nav-orders" role="tab" aria-selected="false"><i class="fas fa-shopping-basket"></i>Orders</a>
+                                        <a class="nav-item nav-link " data-bs-toggle="tab" href="#nav-address" role="tab" aria-selected="false"><i class="fas fa-home" ></i>Address</a>
+                                        <a class="nav-item nav-link"  data-bs-toggle="tab" href="#nav-account" role="tab" aria-selected="false"><i class="fas fa-user" ></i>Account Details</a>
+                                        <a class="nav-item nav-link"  data-bs-toggle="tab" href='#' role="tab" aria-selected="false" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fas fa-sign-out"></i>Logout</a>
+                                        <a class="nav-item nav-link"  data-bs-toggle="tab" href='#' role="tab" aria-selected="false" onclick="confirmation(event)" style='color : red'><i class="fas fa-trash"></i>Delete profile</a>
                                     </div>
                                 </nav>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -82,8 +82,8 @@
                                     @endif
                                     </div>
                                 </div>
-                                @if($user->isEmailVerified)
-                                <div class="tab-pane fade" id="nav-orders" role="tabpanel">
+                                @if($user->email_verified_at!=null)
+                                <div class="tab-pane fade"  id="nav-orders" role="tabpanel">
                                     <div class="axil-dashboard-order">
                                         <div class="table-responsive">
                                             <table class="table">
@@ -120,7 +120,7 @@
                                     </div>
                                 </div>
 
-                                <div class="tab-pane fade" id="nav-address" role="tabpanel">
+                                <div class="tab-pane fade"  id="nav-address" role="tabpanel">
                                     <div class="axil-dashboard-address">
                                         <p class="notice-text">The following addresses will be used on the checkout page by default.</p>
                                         <div class="row row--30">
@@ -144,7 +144,7 @@
                                     </div>
                                 </div>
 
-                                <div class="tab-pane fade" id="nav-account" role="tabpanel">
+                                <div class="tab-pane fade"  id="nav-account" role="tabpanel">
                                     @include('profile.update')
                                 </div>
                                 @endif
@@ -156,6 +156,7 @@
         </div>
     </main>
     <script type='text/javascript'>
+        
         function confirmation(event)
         {
             event.preventDefault();
@@ -196,5 +197,6 @@
             });
         }
     </script>
+
     @include('components.footer')
     @endsection
