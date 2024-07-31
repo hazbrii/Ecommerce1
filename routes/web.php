@@ -8,7 +8,7 @@ use App\Http\Controllers\Client\ContactController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Http\Request;
 
-Route::get('/contact',[ContactController::class,'show']);
+
 
 
 
@@ -29,7 +29,13 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/',[HomeController::class,'show'])->name('/');
 
-
+Route::get('/contact',[ContactController::class,'show'])->name('contact');
+Route::get('/about',function(){
+    return view('client.about');
+})->name('about');
+Route::get('/blog',function(){
+    return view('client.blog');
+})->name('blog');
 
 
 require __DIR__.'/auth.php';

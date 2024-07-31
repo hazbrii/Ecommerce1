@@ -1,6 +1,6 @@
 
 @extends('layouts.app');
-@section('title')Khatoun || Contact @endsection 
+@section('title')Contact @endsection 
 @section('content')
     <main class="main-wrapper">
         <!-- Start Breadcrumb Area  -->
@@ -15,13 +15,6 @@
                                 <li class="axil-breadcrumb-item active" aria-current="page">Contact</li>
                             </ul>
                             <h1 class="title">Contact With Us</h1>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-4">
-                        <div class="inner">
-                            <div class="bradcrumb-thumb">
-                                <img src="assets/images/product/product-45.png" alt="Image">
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -106,4 +99,5 @@
         </div>
         <!-- End Contact Area  -->
     </main>
-
+@include('components.footer')
+@endsection
