@@ -29,7 +29,9 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/',[HomeController::class,'show'])->name('/');
 
-Route::get('/contact',[ContactController::class,'show'])->name('contact');
+Route::get('/contact',function(){
+    return view('client.contact');
+})->name('contact');
 Route::get('/about',function(){
     return view('client.about');
 })->name('about');
