@@ -8,7 +8,7 @@ use App\Http\Controllers\Client\ContactController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Http\Request;
 
-
+use App\Http\Controllers\Admin\CategorieController;
 
 
 
@@ -25,7 +25,9 @@ Route::middleware('auth')->group(function () {
 
 
 
-
+Route::get('/categories/{categorie}',[CategorieController::class,'show'])->name('categories.show');
+Route::get('/categories',[CategorieController::class,'index'])->name('categories.index');
+Route::delete('/categories/{categorie}',[CategorieController::class,'destroy'])->name('categories.destroy');
 
 Route::get('/',[HomeController::class,'show'])->name('/');
 
