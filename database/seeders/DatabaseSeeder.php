@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use App\Models\Categorie;
+use App\Models\Product;
 use Illuminate\Support\Facades\Hash;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -15,6 +16,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Categorie::factory()->count(10)->create();
+        Product::factory()->count(10)->create();
     }
 }

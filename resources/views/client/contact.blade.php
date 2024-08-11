@@ -1,6 +1,5 @@
-
-@extends('layouts.app');
-@section('title')Contact @endsection 
+@extends('layouts.app')
+@section('title') Contact @endsection 
 @section('content')
     <main class="main-wrapper">
         <!-- Start Breadcrumb Area  -->
@@ -30,7 +29,7 @@
                         <div class="col-lg-8">
                             <div class="contact-form">
                                 <h3 class="title mb--10">We would love to hear from you.</h3>
-                                <p>If you’ve got great products your making or looking to work with us then drop us a line.</p>
+                                <p>If you ve got great products your making or looking to work with us then drop us a line.</p>
                                 <form id="contact-form" method="POST" action="mail.php" class="axil-contact-form">
                                     <div class="row row--10">
                                         <div class="col-lg-4">

@@ -41,10 +41,10 @@
                     <div class="col-md-4 col-5">
                         <div class="header-brand">
                             <a href="{{route('/')}}" class="logo logo-dark">
-                                <img src="assets/images/logo/logo.png" alt="Site Logo">
+                                <img src="{{ asset('assets/images/logo/logo.png')}}" alt="Site Logo">
                             </a>
                             <a href="{{route('/')}}" class="logo logo-light">
-                                <img src="assets/images/logo/logo-light.png" alt="Site Logo">
+                                <img src="{{ asset('assets/images/logo/logo-light.png')}}" alt="Site Logo">
                             </a>
                         </div>
                     </div>
@@ -131,7 +131,7 @@
                             <button class="mobile-close-btn mobile-nav-toggler"><i class="fas fa-times"></i></button>
                             <div class="mobile-nav-brand">
                                 <a href="{{route('/')}}" class="logo">
-                                    <img src="assets/images/logo/logo.png" alt="Site Logo">
+                                    <img src="{{ asset('assets/images/logo/logo.png')}}" alt="Site Logo">
                                 </a>
                             </div>
                             <ul class="mainmenu">
