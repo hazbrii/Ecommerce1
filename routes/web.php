@@ -20,6 +20,12 @@ use App\Http\Controllers\Client\ShopController;
 
 
 //categories
+Route::get('/panel', function(){
+    return view('admin.layouts.app');
+});
+
+
+Route::get('/panel/products', [ProductController::class,'index']);
 Route::middleware('auth')->group(function () {
     //both client and admin can access profile
     //profile
@@ -43,8 +49,13 @@ Route::middleware('auth')->group(function () {
         //products
         Route::get('categories/{categorie}/products',[ProductController::class,'index'])->name('products.index');
         Route::get('products/{product}',[ProductController::class,'show'])->name('products.show');
+
         Route::get('categories/{categorie}/products/create',[ProductController::class,'create'])->name('products.create');
-        Route::post('categories/{categorie}/products/create',[ProductController::class,'store'])->name('products.store');
+
+        
+        Route::post('products/create',[ProductController::class,'store'])->name('products.store');
+
+        // Route::post('categories/{categorie}/products/create',[ProductController::class,'store'])->name('products.store');
 
         Route::get('/products/{product}/edit',[ProductController::class,'edit'])->name('products.edit');
         Route::patch('/products/{product}',[ProductController::class,'update'])->name('products.update');

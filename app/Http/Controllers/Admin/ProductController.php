@@ -6,18 +6,24 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Categorie;
+use App\Models\Stock;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Route;
 
 class ProductController extends Controller
 {
-
-    public function index(Categorie $categorie){
-        $categorie = Categorie::find($categorie->id);
-        //inside categorie i have now all the products related
-        return view('admin.product.index',['categorie'=>$categorie]);
-        
+    public function index()
+    {
+        $categories = Categorie::all();
+        $products = Product::with('categorie','stock')->get();
+        return view('admin.products', ['products' => $products,'categories' => $categories]);
     }
+    // public function index(Categorie $categorie){
+    //     $categorie = Categorie::find($categorie->id);
+    //     //inside categorie i have now all the products related
+    //     return view('admin.products',['categorie'=>$categorie]);
+        
+    // }
     public function show(Product $product){
         // $product = Product::find($product->id);
         return view('admin.product.show',['product' => $product]);
@@ -27,7 +33,7 @@ class ProductController extends Controller
     }
 
 
-    public function store(Categorie $categorie){
+    public function store(){
         
         request()->validate([
             'name' => ['required', 'max:100'],
@@ -38,15 +44,18 @@ class ProductController extends Controller
         if (request()->hasFile('image') && request()->file('image')->isValid()) {
             $path = request()->file('image')->store('images/products', 'public');
             $image = basename($path);
-            Product::create([
+            $product = Product::create([
                 'name' => request()->name ,
                 'description' => request()->description,
                 'price' => request()->price,
-                'stock' => 1 ,
+                'stock' => request()->stock,
                 'image' => $image,
-                'categorie_id' => $categorie->id
+                'categorie_id' => request()->categorie
             ]);
-            return to_route('categories.show',$categorie);
+            Stock::create([
+                'quantity'=>request()->stock,
+                'product_id'=>$product->id
+            ]);
         }
         return back();
     }

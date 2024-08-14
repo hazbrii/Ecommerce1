@@ -102,7 +102,7 @@
                                 </li>
                                 <li>
                                 <div >
-                                    No account yet? <a href="{{route('register')}}" class="btn-link">REGISTER HERE.</a>
+                                    No account yet? <a href="{{route('register')}}" class="btn-link">Register here</a>
                                 </div>
                                 </li>
                                         
