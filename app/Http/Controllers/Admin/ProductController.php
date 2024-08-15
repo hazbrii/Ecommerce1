@@ -15,8 +15,8 @@ class ProductController extends Controller
     public function index()
     {
         $categories = Categorie::all();
-        $products = Product::with('categorie','stock')->get();
-        return view('admin.products', ['products' => $products,'categories' => $categories]);
+        $products = Product::with('categorie','stocks')->get();
+        return view('admin.product.index', ['products' => $products,'categories' => $categories]);
     }
     // public function index(Categorie $categorie){
     //     $categorie = Categorie::find($categorie->id);
@@ -27,9 +27,6 @@ class ProductController extends Controller
     public function show(Product $product){
         // $product = Product::find($product->id);
         return view('admin.product.show',['product' => $product]);
-    }
-    public function create(Categorie $categorie){
-        return view('admin.product.create',['categorie'=>$categorie]);
     }
 
 
@@ -60,10 +57,8 @@ class ProductController extends Controller
         return back();
     }
 
-    public function edit(Product $product){
-        return view('admin.product.edit',['product' => $product] );
-    }
-    public function update($productId){
+    public function update(){
+        $productId = request()->id;
         request()->validate([
             'name' => ['required', 'max:100'],
             'description' => ['required', 'max:1000',] ,
@@ -88,7 +83,7 @@ class ProductController extends Controller
                 'price' => request()->price,
                 'stock'=>request()->stock
             ]); 
-            return to_route('products.show',$productId);
+            return back();
         }
 
         $toUpdateProduct->update([
@@ -98,7 +93,7 @@ class ProductController extends Controller
             'stock' => request()->stock
         ]); 
 
-        return to_route('products.show',$productId);
+        return back();
     }
     public function destroy($productId){
         $toDeleteProduct = Product :: find($productId);
@@ -111,7 +106,7 @@ class ProductController extends Controller
         }
         $toDeleteProduct->delete();
         
-        return redirect()->route('products.index', $categorieId);
+        return back();
     
         
     }

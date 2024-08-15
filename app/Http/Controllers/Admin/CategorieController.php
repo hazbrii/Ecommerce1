@@ -16,53 +16,58 @@ class CategorieController extends Controller
             ['categories' => $categories]
         );
     }
+    // public function index(){
+    //     $categories= Categorie :: all();// collection object   
+    //     return view('admin.categorie.index',
+    //         ['categories' => $categories]
+    //     );
+    // }
     public function show(Categorie $categorie){
         $categorie = Categorie::find($categorie->id);
         //products already exists in $categorie variable acces it through( $categorie->products)
         return view('admin.categorie.show',['categorie' => $categorie]);
     }
-
     
-    public function create(){
-        return view('admin.categorie.create');
-    }
+    // public function create(){
+    //     return view('admin.categorie.create');
+    // }
     public function store(){
         request()->validate([
             'name' => ['required', 'max:100'],
             'description' =>['required', 'max:1000',] ,
-            'thumbnail' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg'],
+            'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg'],
         ]);
 
-        if (request()->hasFile('thumbnail') && request()->file('thumbnail')->isValid()) {
-            $path = request()->file('thumbnail')->store('images/categories', 'public');
-            $thumbnail = basename($path);
+        if (request()->hasFile('image') && request()->file('image')->isValid()) {
+            $path = request()->file('image')->store('images/categories', 'public');
+            $image = basename($path);
             
             Categorie::create([
                 'name' =>request()->name ,
                 'description' => request()->description ,
-                'thumbnail' => $thumbnail 
+                'image' => $image 
             ]);
-            return to_route('categories.index');
         }
         return back();
     }
-    public function edit(Categorie $categorie){
-        return view('admin.categorie.edit',['categorie'=>$categorie]);
-    }
-    public function update($categorieId){
+    // public function edit(Categorie $categorie){
+    //     return view('admin.categorie.edit',['categorie'=>$categorie]);
+    // }
+    public function update(){
+        $categorieId = request()->id;
         request()->validate([
             'name' => ['required', 'max:100'],
             'description' =>['required', 'max:1000',] ,
-            'thumbnail' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg'],
+            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg'],
         ]);
         $name = request()->name ;
         $description = request()->description ;
-        $thumbnail = request()->thumbnail;
+        $image = request()->image;
 
         $toUpdateCategorie = Categorie :: find($categorieId);
         
-        if (request()->hasFile('thumbnail') && request()->file('thumbnail')->isValid()) {
-            $path = request()->file('thumbnail')->store('images/categories', 'public');
+        if (request()->hasFile('image') && request()->file('image')->isValid()) {
+            $path = request()->file('image')->store('images/categories', 'public');
             $thumbnail = basename($path);
 
             $path = 'images/categories/' . $toUpdateCategorie->thumbnail;
@@ -73,9 +78,9 @@ class CategorieController extends Controller
             $toUpdateCategorie->update([
                 'name' => $name,
                 'description' => $description,
-                'thumbnail' =>$thumbnail
+                'image' =>$thumbnail
             ]); 
-            return to_route('categories.index');
+            return back();
         }
 
         $toUpdateCategorie->update([
@@ -83,7 +88,7 @@ class CategorieController extends Controller
             'description' => $description
         ]); 
 
-        return to_route('categories.index');
+        return back();
     }
     public function destroy($categorieId){
         $toDeleteCategorie = Categorie :: find($categorieId);

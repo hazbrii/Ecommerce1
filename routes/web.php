@@ -35,35 +35,40 @@ Route::middleware('auth')->group(function () {
     //shop
     Route::get('/shop', [ShopController::class, 'index'])->name('shop.index');
     Route::middleware('admin')->group(function () {
+
+
+
+
         Route::get('/categories/create',[CategorieController::class,'create'])->name('categories.create');
         Route::post('/categories/create',[CategorieController::class,'store'])->name('categories.store');
 
-        Route::get('/categories/{categorie}/edit',[CategorieController::class,'edit'])->name('categories.edit');
-        Route::patch('/categories/{categorie}',[CategorieController::class,'update'])->name('categories.update');
+        // Route::get('/categories/{categorie}/edit',[CategorieController::class,'edit'])->name('categories.edit');
+        // Route::patch('/categories/{categorie}',[CategorieController::class,'update'])->name('categories.update');
+
+        Route::patch('/categories/edit',[CategorieController::class,'update'])->name('categories.update');
 
         Route::get('/categories/{categorie}',[CategorieController::class,'show'])->name('categories.show');
         Route::get('/categories',[CategorieController::class,'index'])->name('categories.index');
         Route::delete('/categories/{categorie}',[CategorieController::class,'destroy'])->name('categories.destroy');
 
-
         //products
-        Route::get('categories/{categorie}/products',[ProductController::class,'index'])->name('products.index');
+        Route::get('/products',[ProductController::class,'index'])->name('products.index');
         Route::get('products/{product}',[ProductController::class,'show'])->name('products.show');
 
-        Route::get('categories/{categorie}/products/create',[ProductController::class,'create'])->name('products.create');
+        // Route::get('categories/{categorie}/products/create',[ProductController::class,'create'])->name('products.create');
 
-        
         Route::post('products/create',[ProductController::class,'store'])->name('products.store');
 
         // Route::post('categories/{categorie}/products/create',[ProductController::class,'store'])->name('products.store');
 
-        Route::get('/products/{product}/edit',[ProductController::class,'edit'])->name('products.edit');
-        Route::patch('/products/{product}',[ProductController::class,'update'])->name('products.update');
+        // Route::get('/products/{product}/edit',[ProductController::class,'edit'])->name('products.edit');
+        // Route::patch('/products/{product}',[ProductController::class,'update'])->name('products.update');
+        //i have updated the routes because i'm working with modals to edit,create produucts ... (better user experience)
+        Route::patch('/products/edit',[ProductController::class,'update'])->name('products.update');
 
         Route::delete('/products/{product}',[ProductController::class,'destroy'])->name('products.destroy');
     });
 });
-
 
 
 
