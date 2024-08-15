@@ -98,6 +98,6 @@ class CategorieController extends Controller
             Storage::disk('public')->delete($path);
         }
         $toDeleteCategorie->delete();
-        return to_route('categories.index');
+        return back();
     }
 }
