@@ -22,7 +22,7 @@
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="#">USD</a></li>
-                                    <li><a class="dropdown-item" href="#">AUD</a></li>
+                                    <li><a class="dropdown-item" href="#">DT</a></li>
                                     <li><a class="dropdown-item" href="#">EUR</a></li>
                                 </ul>
                             </div>
@@ -62,8 +62,9 @@
                                     </a>
                                 </li>
                                 <li class="shopping-cart">
-                                    <a href="#" class="cart-dropdown-btn">
-                                        <span class="cart-count">3</span>
+                                <a href="{{ route('cart.show') }}" >
+                                    <!-- <a href="{{ route('cart.show') }}" class="cart-dropdown-btn"> -->
+                                        <!-- <span class="cart-count">3</span> -->
                                         <i class="flaticon-shopping-cart"></i>
                                     </a>
                                 </li>
@@ -135,10 +136,10 @@
                                 </a>
                             </div>
                             <ul class="mainmenu">
-                                <li><a href="{{route('/')}}">Home</a></li>
+                                <li><a href="{{route('shop.index')}}">Home</a></li>
                                 
                                 </li> 
-                                <li><a href="shop-sidebar.html">Shop</a></li>
+                                <!-- <li><a href="shop-sidebar.html">Shop</a></li> -->
                                 
                                 
                                 <li class="menu-item-has-children">
@@ -155,7 +156,6 @@
                                         <li><a href="#">Pledge Pins</a></li>
                                         <li><a href="#">Prayer Jewellery</a></li>
                                         <li><a href="#">Slave Bracelet</a></li>
-                                        
                                     </ul>
                                 </li>
                                 <li><a href="{{route('about')}}">About</a></li>

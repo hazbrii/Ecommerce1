@@ -39,13 +39,6 @@
                                             <li><a href="#">{{$categorie->name}}</a></li>
                                         @endforeach
                                         <li class="current-cat"><a href="#">Sun Care</a></li>
-                                        <li><a href="#">Night Care</a></li>
-                                        <li><a href="#">Treatments</a></li>
-                                        <li><a href="#">Moisturizers</a></li>
-                                        <li><a href="#">Eye Care</a></li>
-                                        <li><a href="#">Masks</a></li>
-                                        <li><a href="#">Featured</a></li>
-                                        <li><a href="#">On Sale</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -109,7 +102,7 @@
                                     </form>
                                 </div>
                             </div>
-                            <button class="axil-btn btn-bg-primary">All Reset</button>
+                            <button class="axil-btn btn-bg-primary">Filtrer</button>
                         </div>
                         <!-- End .axil-shop-sidebar -->
                     </div>
@@ -141,7 +134,7 @@
                                     <div class="col-xl-4 col-sm-6">
                                         <div class="axil-product product-style-one mb--30">
                                             <div class="thumbnail">
-                                                <a href="single-product.html">
+                                                <a href="{{route('client.products.show',$product)}}">
                                                     <img src="{{asset('storage/images/products/' . $product->image)}}" alt="{{$product->name}}">
                                                 </a>
                                                 <div class="label-block label-right">
@@ -150,11 +143,20 @@
                                                 <div class="product-hover-action">
                                                     <ul class="cart-action">
                                                         <li class="wishlist"><a href="wishlist.html"><i class="far fa-heart"></i></a></li>
-                                                        <li class="select-option"><a href="cart.html">Add to Cart</a></li>
-                                                        <li class="quickview"><a href="#" data-bs-toggle="modal" data-bs-target="#quick-view-modal"><i class="far fa-eye"></i></a></li>
+                                                        <li class="select-option">
+                                                            <a href="" onclick="event.preventDefault();document.getElementById('add_to_cart_{{$product->id}}').submit();">Ajouter au panier</a>
+                                                        </li>
+                                                        <li class="quickview"><a href="" data-bs-toggle="modal" data-bs-target="#quick-view-modal"><i class="far fa-eye"></i></a></li>
                                                     </ul>
                                                 </div>
                                             </div>
+                                            <form id='add_to_cart_{{$product->id}}' action="{{ route('cart.add') }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="id" value="{{ $product->id }}">
+                                                <input type="hidden" name="name" value="{{$product->name}}"> 
+                                                <input type="hidden" name="price" value="{{$product->price}}"> 
+                                                <input type="hidden" name="quantity" value="1"> 
+                                            </form>
                                             <div class="product-content">
                                                 <div class="inner">
                                                     <h5 class="title"><a href="single-product.html">{{$product->name}}</a></h5>

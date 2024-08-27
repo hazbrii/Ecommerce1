@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/vendor/magnific-popup.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/vendor/base.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.min.css') }}">
+    
 
 
     
