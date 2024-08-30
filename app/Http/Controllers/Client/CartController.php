@@ -45,4 +45,14 @@ class CartController extends Controller
         }
         return back()->with('info', 'Product removed from cart!');;
     }
+    public function updateProductQuantity(Request $request)
+    {
+        $productId = $request->input('id');
+        $quantity = $request->input('quantity');
+        $cart = session()->get('cart', []);
+        $cart['products'][$productId]['quantity'] = $quantity;
+        $cart['products'][$productId]['subtotal'] = $quantity * $cart['products'][$productId]['price'] ;
+        session()->put('cart', $cart);
+        return back()->with('info', 'Product removed from cart!');;
+    }
 }

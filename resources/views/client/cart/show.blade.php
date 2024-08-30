@@ -22,7 +22,6 @@
                                     <th scope="col" class="product-price">Price</th>
                                     <th scope="col" class="product-quantity">Quantity</th>
                                     <th scope="col" class="product-subtotal">Subtotal</th>
-                                    <th scope="col" class="product-subtotal"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -45,19 +44,17 @@
                                         <td class="product-title"><a href="single-product.html">{{$product['name']}}</a></td>
                                         <td class="product-price" data-title="Price"><span class="currency-symbol">$</span>{{$product['price']}}</td>
                                         <td class="product-quantity" data-title="Qty">
-                                            <div class="pro-qty">
-                                                <form id="update_product_quantity_{{$productId}}" action="{{ route('cart.add') }}" method="POST">
+                                                <form id="update_product_quantity_{{$productId}}" action="{{ route('cart.product.update') }}" method="POST">
                                                     @csrf
-                                                    <input type="hidden" name="id">
-                                                    <input type="number" id="quantity_{{$productId}}" name="quantity" class="quantity-input" value="{{$product['quantity']}}">
+                                                    <input type="hidden" name="id" value="{{ $productId }}">
+                                                    <div class="pro-qty">
+                                                        <input type="number" id="quantity_{{$productId}}" name="quantity" class="quantity-input" value="{{$product['quantity']}}">
+                                                    </div>
                                                 </form>
-                                            </div>
                                         </td>
                                         <td class="product-subtotal" data-title="Subtotal"><span class="currency-symbol">$</span>{{$product['subtotal']}}</td>
                                     </tr>
-                                @endforeach
-                                
-                                
+                                @endforeach 
                             </tbody>
                            
                         </table>
@@ -65,17 +62,6 @@
                             <div class='text-center my-5' style='font-size:20px;'>No data found</div>
                         @endif  
                     </div>
-                    <!-- <div class="cart-update-btn-area">
-                        <div class="input-group product-cupon">
-                            <input placeholder="Enter coupon code" type="text">
-                            <div class="product-cupon-btn">
-                                <button type="submit" class="axil-btn btn-outline">Apply</button>
-                            </div>
-                        </div>
-                        <div class="update-btn">
-                            <a href="#" class="axil-btn btn-outline">Update Cart</a>
-                        </div>
-                    </div> -->
                     <div class="row">
                         <div class="col-xl-5 col-lg-7 offset-xl-7 offset-lg-5">
                             <div class="axil-order-summery mt--80">
@@ -106,6 +92,43 @@
             </div>
         </div>
         <!-- End Cart Area  -->
-
     </main>
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.quantity-input').forEach(function(input) {
+                input.addEventListener('input', function() {
+                    // Get the product ID from the quantity input's ID
+                    const productId = this.id.split('_')[1];
+                    
+                    // Construct the form ID using the product ID
+                    const formId = 'update_product_quantity_' + productId;
+                    
+                    // Find the form element by ID
+                    const form = document.getElementById(formId);
+                    
+                    // Submit the form
+                    if (form) {
+                        event.preventDefault();
+                        form.submit();
+                    }
+                });
+            });
+            document.querySelectorAll('.qtybtn').forEach(function(button) {
+                button.addEventListener('click', function() {
+                    const input = this.closest('tr').querySelector('.quantity-input');
+                    let currentValue = parseInt(input.value, 10);   
+
+                    if (this.classList.contains('dec')) {
+                        currentValue = Math.max(1, currentValue - 1);
+                    } else if (this.classList.contains('inc')) {
+                        currentValue += 1;
+                    }
+                    input.value = currentValue;
+                    // Trigger input event manually after clicking + or -
+                    input.dispatchEvent(new Event('input'));
+                });
+            });
+        });
+    </script>
+
     @endsection

@@ -14,8 +14,8 @@ use App\Http\Controllers\Client\ProductController as ClientProductController;
 use App\Http\Controllers\Client\ShopController;
 use App\Http\Controllers\Client\CartController;
 use App\Http\Controllers\Client\CheckoutController;
-
-
+use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\ClientController;
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
@@ -43,8 +43,12 @@ Route::middleware('auth')->group(function () {
         Route::get('/cart', [CartController::class, 'show'])->name('cart.show');
         Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
         Route::delete('/cart/remove', [CartController::class, 'removeFromCart'])->name('cart.remove');
+        Route::post('/cart/product/update', [CartController::class, 'updateProductQuantity'])->name('cart.product.update');
+        //checkout
         Route::get('/checkout', [CheckoutController::class, 'show'])->name('checkout.show');
+
         Route::post('/checkout/store', [CheckoutController::class, 'store'])->name('checkout.store');
+        
     });
 
     Route::middleware('admin')->group(function () {
@@ -70,12 +74,19 @@ Route::middleware('auth')->group(function () {
 
         // Route::post('categories/{categorie}/products/create',[ProductController::class,'store'])->name('products.store');
 
-        // Route::get('/products/{product}/edit',[ProductController::class,'edit'])->name('products.edit');
+        Route::get('/products/{product}/edit',[ProductController::class,'edit'])->name('products.edit');
         // Route::patch('/products/{product}',[ProductController::class,'update'])->name('products.update');
         //i have updated the routes because i'm working with modals to edit,create produucts ... (better user experience)
         Route::patch('/products/edit',[AdminProductController::class,'update'])->name('products.update');
-
         Route::delete('/products/{product}',[AdminProductController::class,'destroy'])->name('products.destroy');
+
+
+        //orders
+        Route::get('/admin/orders',[OrderController::class,'index'])->name('orders.index');
+        Route::get('/admin/orders/{order}',[OrderController::class,'show'])->name('orders.show');
+        Route::patch('admin/orders/{order}/edit',[OrderController::class,'update'])->name('orders.update');
+        //users
+        Route::get('admin/clients',[ClientController::class,'index'])->name('users.index');
     });
 });
 

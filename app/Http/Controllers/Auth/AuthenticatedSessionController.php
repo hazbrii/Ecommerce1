@@ -8,6 +8,10 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Cache;
+use App\Models\Product;
+use App\Models\Categorie;
+
 
 class AuthenticatedSessionController extends Controller
 {
@@ -24,8 +28,20 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        $request->authenticate();
 
+        $request->authenticate();
+        $user = Auth::user();
+        if ($user->role==1){
+            $cacheKeyCategories = 'user_' . $user->id . '_categories';
+            $cacheKeyProducts = 'user_' . $user->id . '_products';
+            // Fetch categories and products
+            $categories = Categorie::all();
+            $products = Product::all();
+            
+            // Store them in the cache until the user logs out
+            Cache::put($cacheKeyCategories, $categories);
+            Cache::put($cacheKeyProducts, $products);
+        }
         $request->session()->regenerate();
 
         return redirect()->intended(route('profile.edit', absolute: false));

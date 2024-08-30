@@ -25,6 +25,10 @@ class User extends Authenticatable implements MustVerifyEmail
         'gouvernorat',
         'role'
     ];
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.
