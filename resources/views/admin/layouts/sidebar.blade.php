@@ -50,7 +50,7 @@
                 </a>
               </li>
               <li class="nav-item">
-              <a data-bs-toggle="collapse" href="#">
+              <a href="{{route('clients.index')}}">
                   <i class="fas fa-user"></i>
                   <p>Customers</p>
                 </a>

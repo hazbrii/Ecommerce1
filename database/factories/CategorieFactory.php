@@ -17,9 +17,9 @@ class CategorieFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->title(),
+            'name' => fake()->word(),
             'description' => fake()->paragraph(),
-            'thumbnail'=>'bracelet.jpg'
+            'image'=>'Udqv1G8gCsB8ocmwyaCcAamDbw98R6kfSEIVd9JR.png'
         ];
     }
 }

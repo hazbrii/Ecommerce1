@@ -61,9 +61,8 @@ class ProfileController extends Controller
         // $request->validateWithBag('userDeletion', [
         //     'password' => ['required', 'current_password'],
         // ]);
-
         $user = $request->user();
-        
+
         Auth::logout();
         
         $user->delete();
@@ -73,15 +72,15 @@ class ProfileController extends Controller
         
         return Redirect::to('/login');
     }
-    public function updateTab(Request $request)
-    {
-        // Validate and store the active tab in the session
-        $request->validate([
-            'active_tab' => 'required|string|in:dashboard,orders,address,account',
-        ]);
+    // public function updateTab(Request $request)
+    // {
+    //     // Validate and store the active tab in the session
+    //     $request->validate([
+    //         'active_tab' => 'required|string|in:dashboard,orders,address,account',
+    //     ]);
 
-        session(['active_tab' => $request->input('active_tab')]);
+    //     session(['active_tab' => $request->input('active_tab')]);
 
-        return redirect()->route('profile');
-    }
+    //     return redirect()->route('profile');
+    // }
 }

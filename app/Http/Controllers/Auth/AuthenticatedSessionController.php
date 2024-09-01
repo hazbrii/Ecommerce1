@@ -31,17 +31,15 @@ class AuthenticatedSessionController extends Controller
 
         $request->authenticate();
         $user = Auth::user();
-        if ($user->role==1){
-            $cacheKeyCategories = 'user_' . $user->id . '_categories';
-            $cacheKeyProducts = 'user_' . $user->id . '_products';
-            // Fetch categories and products
-            $categories = Categorie::all();
-            $products = Product::all();
-            
-            // Store them in the cache until the user logs out
-            Cache::put($cacheKeyCategories, $categories);
-            Cache::put($cacheKeyProducts, $products);
-        }
+        
+        // Fetch categories and products
+        $categories = Categorie::all();
+        $products = Product::all();
+        
+        // Store them in the cache until the user logs out
+        Cache::put('categories', $categories);
+        Cache::put('products', $products);
+        
         $request->session()->regenerate();
 
         return redirect()->intended(route('profile.edit', absolute: false));
@@ -52,6 +50,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
+        
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();

@@ -7,8 +7,8 @@
               class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4"
             >
               <div>
-                <h3 class="fw-bold mb-3">Dashboard</h3>
-                <h6 class="op-7 mb-2">Free Bootstrap 5 Admin Dashboard</h6>
+                <h3 class="fw-bold mb-3">Clients</h3>
+                <h6 class="op-7 mb-2">You can manage your clients here </h6>
               </div>
               <div class="ms-md-auto py-2 py-md-0">
                 <a href="#" class="btn btn-label-info btn-round me-2">Manage</a>
@@ -64,14 +64,14 @@
                     <div class="row align-items-center">
                       <div class="col-icon">
                         <div
-                          class="icon-big text-center icon-danger bubble-shadow-small"
+                          class="icon-big text-center icon-success bubble-shadow-small"
                         >
-                          <i class="fas fa-ban"></i>
+                          <i class="fas fa-check"></i>
                         </div>
                       </div>
                       <div class="col col-stats ms-3 ms-sm-0">
                         <div class="numbers">
-                          <p class="card-category">Banned Clients</p>
+                          <p class="card-category">Active Clients</p>
                           <h4 class="card-title">7</h4>
                         </div>
                       </div>
@@ -205,6 +205,109 @@
                   </div>
                 </div>
               </div>
+            </div>
+            
+            <div class="row">
+              <div class="col-md-12">
+                  <div class="card">
+                    <div class="card-header">
+                      <h4 class="card-title"><i class='fa fa-check-circle text-success'></i> Verified clients informations</h4>
+                    </div>
+                    <div class="card-body">
+                      <div class="table-responsive">
+                        <table
+                          id="verified-clients-filter"
+                          class="display table table-striped table-hover"
+                        >
+                          <thead>
+                            <tr>
+                              <th>#</th>
+                              <th>Fullname</th>
+                              <th>Email</th>
+                              <th>Phone</th>
+                              <th>Address</th>
+                              <th>Joined</th>
+                            </tr>
+                          </thead>
+                          <tfoot>
+                            <tr>
+                              <th>#</th>
+                              <th>Fullname</th>
+                              <th>Email</th>
+                              <th>Phone</th>
+                              <th>Address</th>
+                              <th>Joined</th>
+                            </tr>
+                          </tfoot>
+                          <tbody>
+                            @foreach($clients->whereNotNull('email_verified_at') as $client )
+                            <tr>
+                              <td><a href="{{route('clients.show',$client)}}">#{{$client->id}}</a></td>
+                              <td>{{$client->fullname}}</td>
+                              <td>{{$client->email}}</td>
+                              <td>{{$client->phone_number}}</td>
+                              <td>{{$client->gouvernorat}}, {{$client->address}}</td>
+                              <td>{{$client->created_at}}</td>
+                            </tr>
+                            @endforeach
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                  <div class="card">
+                    <div class="card-header">
+                      <h4 class="card-title"><i class='fa fa-exclamation-triangle text-danger' ></i>Unverified clients informations </h4>
+                    </div>
+                    <div class="card-body">
+                      <div class="table-responsive">
+                        <table
+                          id="unverified-clients-filter"
+                          class="display table table-striped table-hover"
+                        >
+                          <thead>
+                            <tr>
+                              <th>#</th>
+                              <th>Fullname</th>
+                              <th>Email</th>
+                              <th>Phone</th>
+                              <th>Address</th>
+                              <th>Joined</th>
+                              <th>Action</th>
+                            </tr>
+                          </thead>
+                          <tfoot>
+                            <tr>
+                              <th>#</th>
+                              <th>Fullname</th>
+                              <th>Email</th>
+                              <th>Phone</th>
+                              <th>Address</th>
+                              <th>Joined</th>
+                            </tr>
+                          </tfoot>
+                          <tbody>
+                            @foreach($clients->whereNull('email_verified_at') as $client )
+                            <tr>
+                              <td><a href="{{route('clients.show',$client)}}">#{{$client->id}}</a></td>
+                              <td>{{$client->fullname}}</td>
+                              <td>{{$client->email}}</td>
+                              <td>{{$client->phone_number}}</td>
+                              <td>{{$client->gouvernorat}}, {{$client->address}}</td>
+                              <td>{{$client->created_at}}</td>
+                              <td class='text-center'><button class='btn'><i class='fa fa-trash text-danger'></i></button></td>
+                            </tr>
+                            @endforeach
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
             </div>
 
           </div>

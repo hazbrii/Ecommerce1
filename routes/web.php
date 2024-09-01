@@ -37,6 +37,7 @@ Route::middleware('auth')->group(function () {
     Route::middleware('client')->group(function () {
         //shop
         Route::get('/shop', [ShopController::class, 'index'])->name('shop.index');
+        Route::get('/shop/{categorie}', [ShopController::class, 'show'])->name('shop.show');
         //product
         Route::get('/products/{product}', [ClientProductController::class, 'show'])->name('client.products.show');
         //cart
@@ -86,7 +87,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/admin/orders/{order}',[OrderController::class,'show'])->name('orders.show');
         Route::patch('admin/orders/{order}/edit',[OrderController::class,'update'])->name('orders.update');
         //users
-        Route::get('admin/clients',[ClientController::class,'index'])->name('users.index');
+        Route::get('admin/clients',[ClientController::class,'index'])->name('clients.index');
+        Route::get('admin/clients/{client}',[ClientController::class,'show'])->name('clients.show');
     });
 });
 

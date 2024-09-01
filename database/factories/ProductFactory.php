@@ -19,10 +19,10 @@ class ProductFactory extends Factory
         return [
             'name' => fake()->title(),
             'description' => fake()->paragraph(),
-            'stock'=>1,
+            'stock'=>30,
             'price'=>fake()->numberBetween(1,20),
-            'categorie_id'=>23,
-            'image'=>''
+            'categorie_id'=>15,
+            'image'=>'b4cqJCuQ7oAQk8idwUEqBkDAkQaOxAJMWApC5X86.jpg'
         ];
     }
 }

@@ -56,6 +56,12 @@
                                         <i class="flaticon-magnifying-glass"></i>
                                     </a>
                                 </li>
+                                <li class="shopping-cart">
+                                    <a href="#" class="cart-dropdown-btn">
+                                        <span class="cart-count">3</span>
+                                        <i class="flaticon-shopping-cart"></i>
+                                    </a>
+                                </li>
                                 <li class="wishlist">
                                     <a href="wishlist.html">
                                         <i class="flaticon-heart"></i>
@@ -75,9 +81,7 @@
                                     </a>
                                     <div class="my-account-dropdown">
                                         <!-- <span class="title">QUICKLINKS</span> -->
-                                        
                                         <ul>
-                                            
                                             <li>
                                                 <a href="{{route('profile.edit')}}">My Account</a>
                                             </li>
@@ -90,6 +94,12 @@
                                             <li>
                                                 <a href="#">Language</a>
                                             </li>
+                                            <li>
+                                                <a href=""  onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fas fa-sign-out"></i>Logout</a>
+                                            </li>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                @csrf
+                                            </form>  
                                             
                                         </ul>
                                         
@@ -120,7 +130,97 @@
             </div>
         </div>
         <!-- End Header Top Area  -->
-
+        <div class="cart-dropdown" id="cart-dropdown">
+            <div class="cart-content-wrap">
+                <div class="cart-header">
+                    <h2 class="header-title">Cart review</h2>
+                    <button class="cart-close sidebar-close"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="cart-body">
+                    <ul class="cart-item-list">
+                        <li class="cart-item">
+                            <div class="item-img">
+                                <a href="single-product.html"><img src="assets/images/product/electric/product-01.png" alt="Commodo Blown Lamp"></a>
+                                <button class="close-btn"><i class="fas fa-times"></i></button>
+                            </div>
+                            <div class="item-content">
+                                <div class="product-rating">
+                                    <span class="icon">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                    <span class="rating-number">(64)</span>
+                                </div>
+                                <h3 class="item-title"><a href="single-product-3.html">Wireless PS Handler</a></h3>
+                                <div class="item-price"><span class="currency-symbol">$</span>155.00</div>
+                                <div class="pro-qty item-quantity">
+                                    <input type="number" class="quantity-input" value="15">
+                                </div>
+                            </div>
+                        </li>
+                        <li class="cart-item">
+                            <div class="item-img">
+                                <a href="single-product-2.html"><img src="assets/images/product/electric/product-02.png" alt="Commodo Blown Lamp"></a>
+                                <button class="close-btn"><i class="fas fa-times"></i></button>
+                            </div>
+                            <div class="item-content">
+                                <div class="product-rating">
+                                    <span class="icon">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                    <span class="rating-number">(4)</span>
+                                </div>
+                                <h3 class="item-title"><a href="single-product-2.html">Gradient Light Keyboard</a></h3>
+                                <div class="item-price"><span class="currency-symbol">$</span>255.00</div>
+                                <div class="pro-qty item-quantity">
+                                    <input type="number" class="quantity-input" value="5">
+                                </div>
+                            </div>
+                        </li>
+                        <li class="cart-item">
+                            <div class="item-img">
+                                <a href="single-product-3.html"><img src="assets/images/product/electric/product-03.png" alt="Commodo Blown Lamp"></a>
+                                <button class="close-btn"><i class="fas fa-times"></i></button>
+                            </div>
+                            <div class="item-content">
+                                <div class="product-rating">
+                                    <span class="icon">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                    <span class="rating-number">(6)</span>
+                                </div>
+                                <h3 class="item-title"><a href="single-product.html">HD CC Camera</a></h3>
+                                <div class="item-price"><span class="currency-symbol">$</span>200.00</div>
+                                <div class="pro-qty item-quantity">
+                                    <input type="number" class="quantity-input" value="100">
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="cart-footer">
+                    <h3 class="cart-subtotal">
+                        <span class="subtotal-title">Subtotal:</span>
+                        <span class="subtotal-amount">$610.00</span>
+                    </h3>
+                    <div class="group-btn">
+                        <a href="cart.html" class="axil-btn btn-bg-primary viewcart-btn">View Cart</a>
+                        <a href="checkout.html" class="axil-btn btn-bg-secondary checkout-btn">Checkout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- Start Mainmenu Area  -->
         <div id="axil-sticky-placeholder"></div>
         <div class="axil-mainmenu">
@@ -139,29 +239,18 @@
                                 <li><a href="{{route('shop.index')}}">Home</a></li>
                                 
                                 </li> 
-                                <!-- <li><a href="shop-sidebar.html">Shop</a></li> -->
-                                
-                                
                                 <li class="menu-item-has-children">
                                     <a href="#">Categories</a>
                                     <ul class="axil-submenu">
-                                        <li><a href="#">Barette</a></li>
-                                        <li><a href="#">Base metals</a></li>
-                                        <li><a href="#">Estate Jawellery</a></li>
-                                        <li><a href="#">Foilbacks</a></li>
-                                        <li><a href="#">Kalabubu</a></li>
-                                        <li><a href="#">Medallion</a></li>
-                                        <li><a href="#">Nawarat Ring</a></li>
-                                        <li><a href="#">Anklet</a></li>
-                                        <li><a href="#">Pledge Pins</a></li>
-                                        <li><a href="#">Prayer Jewellery</a></li>
-                                        <li><a href="#">Slave Bracelet</a></li>
+                                        @foreach($categories as $categorie)
+                                            <li><a href="{{route('shop.show',$categorie)}}">{{$categorie->name}}</a></li>
+                                        @endforeach
                                     </ul>
                                 </li>
                                 <li><a href="{{route('about')}}">About</a></li>
                                 <li><a href="{{route('blog')}}">Blog</a></li>
-                                
                                 <li><a href="{{route('contact')}}">Contact</a></li>
+                                
                             </ul>
                         </nav>
                         <!-- End Mainmanu Nav -->

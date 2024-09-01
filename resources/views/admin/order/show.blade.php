@@ -97,20 +97,24 @@
                                 <div class="card-body">
                                     <div class="card-title fw-mediumbold">Client #{{$order->user_id}} Informations : </div>
                                         <div class="card-list">
-                                            <div class="item-list">
-                                                <i class='fa fa-user'></i> {{$order->user->fullname}}
+                                            <div class="item-list  d-flex align-items-center " >
+                                                <i class='fa fa-user me-2' aria-hidden="true"></i>
+                                                <span>{{$order->user->fullname}}</span>
                                             </div>
-                                            <div class="item-list">
-                                                <i class='fa fa-phone'></i> {{$order->user->phone_number}}
+                                            <div class="item-list  d-flex align-items-center">
+                                                <i class='fa fa-phone me-2' aria-hidden="true"></i>
+                                                <span>{{$order->user->phone_number}}</span>
                                             </div>
-                                            <div class="item-list">
-                                                <i class='fa fa-envelope'></i> {{$order->user->email}}
+                                            <div class="item-list  d-flex align-items-center">
+                                                <i class='fa fa-envelope me-2' aria-hidden="true"></i>
+                                                <span> {{$order->user->email}}</span>
                                             </div>
-                                            <div class="item-list">
-                                                <i class='fa fa-address-card'></i> {{$order->user->gouvernorat}},  {{$order->user->address}}
+                                            <div class="item-list  d-flex align-items-center">
+                                                <i class='fa fa-address-card me-2' aria-hidden="true"></i>
+                                                <span> {{$order->user->gouvernorat}},  {{$order->user->address}}</span>
                                             </div>
+                                        </div>
                                     </div>
-                                </div>
                             </div>
                             <div class="card card-round">
                                 <div class="card-body">
