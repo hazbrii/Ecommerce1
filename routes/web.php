@@ -16,28 +16,23 @@ use App\Http\Controllers\Client\CartController;
 use App\Http\Controllers\Client\CheckoutController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ClientController;
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
+use App\Http\Controllers\Admin\DashboardController;
 
 
-//categories
-Route::get('/panel', function(){
-    return view('admin.layouts.app');
-});
 
-Route::get('/panel/products', [AdminProductController::class,'index']);
+
+
 Route::middleware('auth')->group(function () {
-    //both client and admin can access profile
-    //profile
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->middleware('verified')->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    
     Route::middleware('client')->group(function () {
+        //profile i have to add verified to the others
+        Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::patch('/profile', [ProfileController::class, 'update'])->middleware('verified')->name('profile.update');
+        Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
         //shop
         Route::get('/shop', [ShopController::class, 'index'])->name('shop.index');
         Route::get('/shop/{categorie}', [ShopController::class, 'show'])->name('shop.show');
+        Route::post('/shop', [ShopController::class, 'sort'])->name('shop.sort');
         //product
         Route::get('/products/{product}', [ClientProductController::class, 'show'])->name('client.products.show');
         //cart
@@ -53,35 +48,35 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::middleware('admin')->group(function () {
-        Route::get('/categories/create',[CategorieController::class,'create'])->name('categories.create');
-        Route::post('/categories/create',[CategorieController::class,'store'])->name('categories.store');
+        Route::get('admin/categories/create',[CategorieController::class,'create'])->name('categories.create');
+        Route::post('admin/categories/create',[CategorieController::class,'store'])->name('categories.store');
 
         // Route::get('/categories/{categorie}/edit',[CategorieController::class,'edit'])->name('categories.edit');
         // Route::patch('/categories/{categorie}',[CategorieController::class,'update'])->name('categories.update');
 
-        Route::patch('/categories/edit',[CategorieController::class,'update'])->name('categories.update');
+        Route::patch('admin/categories/edit',[CategorieController::class,'update'])->name('categories.update');
 
-        Route::get('/categories/{categorie}',[CategorieController::class,'show'])->name('categories.show');
-        Route::get('/categories',[CategorieController::class,'index'])->name('categories.index');
-        Route::delete('/categories/{categorie}',[CategorieController::class,'destroy'])->name('categories.destroy');
+        Route::get('admin/categories/{categorie}',[CategorieController::class,'show'])->name('categories.show');
+        Route::get('admin/categories',[CategorieController::class,'index'])->name('categories.index');
+        Route::delete('admin/categories/{categorie}',[CategorieController::class,'destroy'])->name('categories.destroy');
 
         //products
-        Route::get('/products',[AdminProductController::class,'index'])->name('products.index');
+        Route::get('admin/products',[AdminProductController::class,'index'])->name('products.index');
         Route::get('/admin/products/{product}',[AdminProductController::class,'show'])->name('products.show');
 
         // Route::get('categories/{categorie}/products/create',[ProductController::class,'create'])->name('products.create');
 
-        Route::post('products/create',[AdminProductController::class,'store'])->name('products.store');
+        Route::post('admin/products/create',[AdminProductController::class,'store'])->name('products.store');
 
         // Route::post('categories/{categorie}/products/create',[ProductController::class,'store'])->name('products.store');
 
-        Route::get('/products/{product}/edit',[ProductController::class,'edit'])->name('products.edit');
+        Route::get('admin/products/{product}/edit',[ProductController::class,'edit'])->name('products.edit');
         // Route::patch('/products/{product}',[ProductController::class,'update'])->name('products.update');
         //i have updated the routes because i'm working with modals to edit,create produucts ... (better user experience)
-        Route::patch('/products/edit',[AdminProductController::class,'update'])->name('products.update');
-        Route::delete('/products/{product}',[AdminProductController::class,'destroy'])->name('products.destroy');
+        Route::patch('admin/products/edit',[AdminProductController::class,'update'])->name('products.update');
+        Route::delete('admin/products/{product}',[AdminProductController::class,'destroy'])->name('products.destroy');
 
-
+        Route::get('/admin',[DashboardController::class,'show'])->name('dashboard.show');
         //orders
         Route::get('/admin/orders',[OrderController::class,'index'])->name('orders.index');
         Route::get('/admin/orders/{order}',[OrderController::class,'show'])->name('orders.show');

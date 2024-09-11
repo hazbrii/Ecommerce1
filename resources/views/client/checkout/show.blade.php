@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('client.layouts.app')
 @section('title') Chekout @endsection
 @section('content')
     <main class="main-wrapper">

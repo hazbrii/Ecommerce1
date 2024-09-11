@@ -1,194 +1,64 @@
 <!doctype html>
-<html class="no-js" lang="en">
+<html lang="en">
 
 <head>
-    <meta charset="utf-8">
+    <!-- <meta charset="utf-8"> -->
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Khatoun || @yield('title')</title>
     <meta name="robots" content="noindex, follow" />
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/images/logo/logo-light.png') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/vendor/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/vendor/font-awesome.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/vendor/flaticon/flaticon.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/vendor/slick.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/vendor/slick-theme.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/vendor/jquery-ui.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/vendor/sal.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/vendor/magnific-popup.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/vendor/base.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/style.min.css') }}">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .chart-container {
+            position: relative;
+            height: 400px; /* Height of the chart */
+            width: 100%; /* Full width of the parent container */
+        }
+    </style>
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" />
+  
+
     <link rel="stylesheet" href="{{ asset('assets/css/plugins.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/kaiadmin.min.css') }}" />
+    <!-- <script src="{{asset('assets/js/plugin/webfont/webfont.min.js')}}"></script> -->
+    <!-- <link rel="stylesheet" href="{{asset('assets/css/demo.css')}}" /> -->
+    <script>
+      WebFont.load({
+        google: { families: ["Public Sans:300,400,500,600,700"] },
+        custom: {
+          families: [
+            "Font Awesome 5 Solid",
+            "Font Awesome 5 Regular",
+            "Font Awesome 5 Brands",
+            "simple-line-icons",
+          ],
+          urls: ["{{asset('assets/css/fonts.min.css')}}"],
+        },
+        active: function () {
+          sessionStorage.fonts = true;
+        },
+      });
+    </script>
 
-    <style>
-      .list-group {
-    padding: 0; /* Remove default padding */
-}
-
-    .list-group-item {
-        margin: 0; /* Remove margin */
-        padding: 0; /* Remove padding */
-    }
-      .card-stepper {
-        z-index: 0
-        }
-        
-        #progressbar-2 {
-        color: #455A64;
-        }
-        
-        #progressbar-2 li {
-        list-style-type: none;
-        font-size: 13px;
-        width: 33.33%;
-        float: left;
-        position: relative;
-        }
-        
-        #progressbar-2 #step1:before {
-        content: '\f058';
-        font-family: "Font Awesome 5 Free";
-        color: #fff;
-        width: 37px;
-        margin-left: 0px;
-        padding-left: 0px;
-        }
-        
-        #progressbar-2 #step2:before {
-        content: '\f058';
-        font-family: "Font Awesome 5 Free";
-        color: #fff;
-        width: 37px;
-        }
-        
-        #progressbar-2 #step3:before {
-        content: '\f058';
-        font-family: "Font Awesome 5 Free";
-        color: #fff;
-        width: 37px;
-        margin-right: 0;
-        text-align: center;
-        }
-        
-        #progressbar-2 #step4:before {
-        content: '\f111';
-        font-family: "Font Awesome 5 Free";
-        color: #fff;
-        width: 37px;
-        margin-right: 0;
-        text-align: center;
-        }
-        
-        #progressbar-2 li:before {
-        line-height: 37px;
-        display: block;
-        font-size: 12px;
-        background: #c5cae9;
-        border-radius: 50%;
-        }
-        
-        #progressbar-2 li:after {
-        content: '';
-        width: 100%;
-        height: 10px;
-        background: #c5cae9;
-        position: absolute;
-        left: 0%;
-        right: 0%;
-        top: 15px;
-        z-index: -1;
-        }
-        
-        #progressbar-2 li:nth-child(1):after {
-        left: 1%;
-        width: 100%
-        }
-        
-        #progressbar-2 li:nth-child(2):after {
-        left: 1%;
-        width: 100%;
-        }
-        
-        #progressbar-2 li:nth-child(3):after {
-        left: 1%;
-        width: 100%;
-        background: #c5cae9 !important;
-        }
-        
-        #progressbar-2 li:nth-child(4) {
-        left: 0;
-        width: 37px;
-        }
-        
-        #progressbar-2 li:nth-child(4):after {
-        left: 0;
-        width: 0;
-        }
-        
-        #progressbar-2 li.active:before,
-        #progressbar-2 li.active:after {
-        background: #6520ff;
-        }
-        .sidebar {
-            width: 250px;
-            position: fixed;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            background-color: #333;
-            z-index: 1000;
-        }
-
-        .header {
-            top: 0;
-            position: fixed;
-            left: 250px; /* Match this to the sidebar width */
-            right: 0;
-            z-index: 1001;
-        }
-
-        .content {
-            margin-left: 250px; /* Match this to the sidebar width */
-            padding-top: 60px; /* Match this to the header height */
-        }
-
-    </style>
 
 </head>
-
-
     <body>
-        <div class="sidebar" >
-             @include('admin.layouts.sidebar')
+      <div class="wrapper">
+        @include('admin.layouts.sidebar')
+        <div class="main-panel">
+          @include('admin.layouts.header')
+          <div class="container">
+            <div class="page-inner">
+              @yield('content')
+            </div>
+          </div>
+          @include('admin.layouts.footer')
         </div>
-
-        <div class="header" >
-             @include('admin.layouts.header')
-        </div>
-
-        <div class="content" >
-            @yield('content')
-        </div>
-        <script src="{{ asset('assets/js/vendor/modernizr.min.js') }}"></script>
-        <script src="{{ asset('assets/js/vendor/jquery.js') }}"></script>
-        <script src="{{ asset('assets/js/vendor/popper.min.js') }}"></script>
-        <script src="{{ asset('assets/js/vendor/bootstrap.min.js') }}"></script>
-        <script src="{{ asset('assets/js/vendor/slick.min.js') }}"></script>
-        <script src="{{ asset('assets/js/vendor/js.cookie.js') }}"></script>
-        <script src="{{ asset('assets/js/vendor/jquery-ui.min.js') }}"></script>
-        <script src="{{ asset('assets/js/vendor/jquery.ui.touch-punch.min.js') }}"></script>
-        <script src="{{ asset('assets/js/vendor/jquery.countdown.min.js') }}"></script>
-        <script src="{{ asset('assets/js/vendor/sal.js') }}"></script>
-        <script src="{{ asset('assets/js/vendor/jquery.magnific-popup.min.js') }}"></script>
-        <script src="{{ asset('assets/js/vendor/imagesloaded.pkgd.min.js') }}"></script>
-        <script src="{{ asset('assets/js/vendor/isotope.pkgd.min.js') }}"></script>
-        <script src="{{ asset('assets/js/vendor/counterup.js') }}"></script>
-        <script src="{{ asset('assets/js/vendor/waypoints.min.js') }}"></script>
-        <script src="{{ asset('assets/js/main.js') }}"></script>
+      </div>
         <script src="{{ asset('assets/js/core/jquery-3.7.1.min.js') }}"></script>
         <script src="{{ asset('assets/js/core/popper.min.js') }}"></script>
         <script src="{{ asset('assets/js/core/bootstrap.min.js') }}"></script>
@@ -211,75 +81,56 @@
         <script src="{{ asset('assets/js/plugin/sweetalert/sweetalert.min.js') }}"></script>
         <!-- Kaiadmin JS -->
         <script src="{{ asset('assets/js/kaiadmin.min.js') }}"></script>
-        <!-- Kaiadmin DEMO methods, don't include it in your project! -->
-        <script src="{{ asset('assets/js/setting-demo.js') }}"></script>
-        <script src="{{ asset('assets/js/demo.js') }}"></script>
-        <script>
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js"></script>
+
+
+        <!-- <script src="{{asset('assets/js/setting-demo.js')}}"></script> -->
+        <!-- <script src="{{asset('assets/js/demo.js')}}"></script> -->
+      <script>
       $(document).ready(function () {
-        $("#basic-datatables").DataTable({});
-
-        $("#verified-clients-filter").DataTable({
-          pageLength: 5,
-          initComplete: function () {
-            this.api()
-              .columns()
-              .every(function () {
-                var column = this;
-                var select = $(
-                  '<select class="form-select"><option value=""></option></select>'
-                )
-                  .appendTo($(column.footer()).empty())
-                  .on("change", function () {
-                    var val = $.fn.dataTable.util.escapeRegex($(this).val());
-
-                    column
-                      .search(val ? "^" + val + "$" : "", true, false)
-                      .draw();
-                  });
-
-                column
-                  .data()
-                  .unique()
-                  .sort()
-                  .each(function (d, j) {
-                    select.append(
-                      '<option value="' + d + '">' + d + "</option>"
-                    );
-                  });
-              });
-          },
+        $("#basic-datatables").DataTable({
+          pageLength: 6,
         });
-        $("#unverified-clients-filter").DataTable({
-          pageLength: 5,
-          initComplete: function () {
-            this.api()
-              .columns()
-              .every(function () {
-                var column = this;
-                var select = $(
-                  '<select class="form-select"><option value=""></option></select>'
-                )
-                  .appendTo($(column.footer()).empty())
-                  .on("change", function () {
-                    var val = $.fn.dataTable.util.escapeRegex($(this).val());
+        // $("#categories-filter").DataTable({
+        //   pageLength: 6,
+        // });
+        // $("#products-filter").DataTable({
+        // });
+        // $("#orders-filter").DataTable({});
+        // $("#verified-clients-filter").DataTable({
+        // });
+        // $("#unverified-clients-filter").DataTable({
+        //   pageLength: 5,
+        //   initComplete: function () {
+        //     this.api()
+        //       .columns()
+        //       .every(function () {
+        //         var column = this;
+        //         var select = $(
+        //           '<select class="form-select"><option value=""></option></select>'
+        //         )
+        //           .appendTo($(column.footer()).empty())
+        //           .on("change", function () {
+        //             var val = $.fn.dataTable.util.escapeRegex($(this).val());
 
-                    column
-                      .search(val ? "^" + val + "$" : "", true, false)
-                      .draw();
-                  });
+        //             column
+        //               .search(val ? "^" + val + "$" : "", true, false)
+        //               .draw();
+        //           });
 
-                column
-                  .data()
-                  .unique()
-                  .sort()
-                  .each(function (d, j) {
-                    select.append(
-                      '<option value="' + d + '">' + d + "</option>"
-                    );
-                  });
-              });
-          },
-        });
+        //         column
+        //           .data()
+        //           .unique()
+        //           .sort()
+        //           .each(function (d, j) {
+        //             select.append(
+        //               '<option value="' + d + '">' + d + "</option>"
+        //             );
+        //           });
+        //       });
+        //   },
+        // });
 
         // Add Row
         $("#add-row").DataTable({
@@ -301,7 +152,32 @@
           $("#addRowModal").modal("hide");
         });
       });
+      $("#lineChart").sparkline([102, 109, 120, 99, 110, 105, 115], {
+        type: "line",
+        height: "70",
+        width: "100%",
+        lineWidth: "2",
+        lineColor: "#177dff",
+        fillColor: "rgba(23, 125, 255, 0.14)",
+      });
+
+      $("#lineChart2").sparkline([99, 125, 122, 105, 110, 124, 115], {
+        type: "line",
+        height: "70",
+        width: "100%",
+        lineWidth: "2",
+        lineColor: "#f3545d",
+        fillColor: "rgba(243, 84, 93, .14)",
+      });
+
+      $("#lineChart3").sparkline([105, 103, 123, 100, 95, 105, 115], {
+        type: "line",
+        height: "70",
+        width: "100%",
+        lineWidth: "2",
+        lineColor: "#ffa534",
+        fillColor: "rgba(255, 165, 52, .14)",
+      });
     </script>
     </body>
-
 </html>

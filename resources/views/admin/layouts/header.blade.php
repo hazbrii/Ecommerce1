@@ -1,56 +1,58 @@
-<header class="header axil-header header-style-4" style="background-color:white;">
-        <div class="axil-header-top">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-md-8 col-10">
-                    </div>
-                    <div class="col-md-4 col-7">
-                        <div class="header-action">
-                            <ul class="action-list">
-                                <li class="axil-search">
-                                    <a href="javascript:void(0)" class="header-search-icon" title="Search">
-                                        <i class="flaticon-magnifying-glass"></i>
-                                    </a>
-                                </li>
-                                <li class="shopping-cart">
-                                    <a href="#" class="cart-dropdown-btn">
-                                        <span class="cart-count">3</span>
-                                        <i class="fa fa-bell"></i>
-                                    </a>
-                                </li>
-                                <li class="my-account">
-                                    <a href="javascript:void(0)">
-                                        <i class="flaticon-person"></i>
-                                    </a>
-                                    <div class="my-account-dropdown">
-                                        <ul>
-                                            <li>
-                                                <a href="{{route('profile.edit')}}">My Account</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Initiate return</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Support</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Language</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                
-                                <li class="axil-mobile-toggle">
-                                    <button class="menu-btn mobile-nav-toggler">
-                                        <i class="flaticon-menu-2"></i>
-                                    </button>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+<div class="main-header">
+    <div class="main-header-logo">
+            <!-- Logo Header -->
+        <div class="logo-header" data-background-color="dark">
+            <a href="index.html" class="logo">
+            <img
+                src="{{asset('assets/img/kaiadmin/logo_light.svg')}}"
+                alt="navbar brand"
+                class="navbar-brand"
+                height="20"
+            />
+            </a>
+            <div class="nav-toggle">
+            <button class="btn btn-toggle toggle-sidebar">
+                <i class="gg-menu-right"></i>
+            </button>
+            <button class="btn btn-toggle sidenav-toggler">
+                <i class="gg-menu-left"></i>
+            </button>
             </div>
+            <button class="topbar-toggler more">
+            <i class="gg-more-vertical-alt"></i>
+            </button>
         </div>
-        <!-- End Header Top Area  -->
+        <!-- End Logo Header -->
+    </div>
+    <!-- Navbar Header -->
+    <nav
+    class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom"
+    >
+        <div class="container-fluid">
+            <nav
+            class="navbar navbar-header-left navbar-expand-lg navbar-form nav-search p-0 d-none d-lg-flex"
+            >
+            <div class="input-group">
+                <div class="input-group-prepend">
+                <button type="submit" class="btn btn-search pe-1">
+                    <i class="fa fa-search search-icon"></i>
+                </button>
+                </div>
+                <input
+                type="text"
+                placeholder="Search ..."
+                class="form-control"
+                />
+            </div>
+            </nav>
 
-    </header>
+            <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
+                @include('admin.partials.dropdown.search')    
+
+                @include('admin.partials.dropdown.notification')
+
+                @include('admin.partials.dropdown.profile')
+            </ul>
+        </div>
+    </nav>
+</div>

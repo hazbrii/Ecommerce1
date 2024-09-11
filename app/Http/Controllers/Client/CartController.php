@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class CartController extends Controller
 {
@@ -12,11 +13,13 @@ class CartController extends Controller
         return view('client.cart.show', ['cart'=>$cart]);
     }
     public function addToCart(Request $request){
+        $products = Cache::get('products',collect());
         $productId =  $request->input('id');
         $product = [
             "name" => $request->input('name'),
             "price" => $request->input('price'),
             "quantity" => $request->input('quantity', 1),
+            "image" =>$request->input('image'),
         ];
         $product['subtotal'] = $product['price'] * $product['quantity'];
         $cart = session()->get('cart', [
@@ -24,8 +27,7 @@ class CartController extends Controller
             'totalPrice' => 0,
         ]);
         
-        $products = $cart['products'];
-        if (isset($products[$productId])) {
+        if (isset($cart['products'][$productId])) {
             $cart['products'][$productId]['quantity'] += $product['quantity'];
         } else {
             $cart['products'][$productId] = $product;

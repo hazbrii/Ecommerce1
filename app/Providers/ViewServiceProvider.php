@@ -25,7 +25,7 @@ class ViewServiceProvider extends ServiceProvider
     {
         View::composer('*', function ($view) {
             if (!Cache::has('categories')) {
-                Cache::put('categories', Category::all());
+                Cache::put('categories', Categorie::all());
             }
             
             if (!Cache::has('products')) {

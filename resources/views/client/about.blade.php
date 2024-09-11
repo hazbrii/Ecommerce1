@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('client.layouts.app')
 @section('title') About Us @endsection
 @section('content')
     <main class="main-wrapper">
@@ -37,7 +37,8 @@
                             <span class="title-highlighter highlighter-primary2"> <i class="far fa-shopping-basket"></i>About Store</span>
                             <h3 class="title">Online shopping includes both buying things online.</h3>
                             <span class="text-heading">Salesforce B2C Commerce can help you create unified, intelligent digital commerce
-                                experiences — both online and in the store.</span>
+                                experiences — both online and in the store.
+                            </span>
                             <div class="row">
                                 <div class="col-xl-6">
                                     <p>Empower your sales teams with industry tailored

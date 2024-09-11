@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('client.layouts.app')
 @section('title') Home @endsection
 @section('content')
     
@@ -1687,10 +1687,6 @@
         <!-- End Axil Newsletter Area  -->
 
     </main>
-
-
-    
-    @include('components.footer')
 
     <!-- Product Quick View Modal Start -->
     <div class="modal fade quick-view-product" id="quick-view-modal" tabindex="-1" aria-hidden="true">

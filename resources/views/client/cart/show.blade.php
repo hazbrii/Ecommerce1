@@ -1,8 +1,7 @@
-@extends('layouts.app')
+@extends('client.layouts.app')
 @section('title') Cart @endsection
 @section('content')
     <main class="main-wrapper">
-
         <!-- Start Cart Area  -->
         <div class="axil-product-cart-area axil-section-gap">
             <div class="container">

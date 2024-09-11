@@ -12,40 +12,32 @@
               </div>
             </div>
             <div class="row">
-            <div class="col-sm-6 col-md-3 offset-3">
-                <div class="card card-stats card-round">
-                    <div class="card-body">
-                        <div class="row ">
-                        <div class="col-5 ">
-                            <div class="icon-big text-center">
-                                <i class="far fa-check-circle text-success"></i>
-                            </div>
-                        </div>
-                        <div class="col-7 col-stats">
-                            <div class="numbers">
-                            <p class="card-category">Total Orders</p>
-                            <h4 class="card-title">$ 1,345</h4>
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-                <div class="col-sm-6 col-md-3">
+            <div class="col-sm-6 col-md-4">
                 <div class="card card-stats card-round">
                   <div class="card-body">
-                    <div class="row">
-                      <div class="col-5">
-                        <div class="icon-big text-center">
-                          <i class="fas fa-wallet text-success"></i>
-                        </div>
-                      </div>
-                      <div class="col-7 col-stats">
-                        <div class="numbers">
-                          <p class="card-category">Revenue</p>
-                          <h4 class="card-title">$ 1,345</h4>
-                        </div>
-                      </div>
+                      <div class="numbers">
+                        <p class="card-category">Total Orders</p>
+                        <h4 class="card-title">12</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-md-4">
+                <div class="card card-stats card-round">
+                  <div class="card-body">
+                      <div class="numbers">
+                        <p class="card-category">Total Spent</p>
+                        <h4 class="card-title">$ 1,345</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-md-4">
+                <div class="card card-stats card-round">
+                  <div class="card-body">
+                      <div class="numbers">
+                        <p class="card-category">Profit Gained</p>
+                        <h4 class="card-title">$ 345</h4>
                     </div>
                   </div>
                 </div>
@@ -146,11 +138,10 @@
                           </div>
                         </div>
                         <div class="card-body">
-                          <div class="chart-container" style="min-height: 375px">
-                            <canvas id="statisticsChart"></canvas>
+                          <div class="chart-container">
+                              <canvas id="clientBarChart"></canvas>
                           </div>
-                          <div id="myChartLegend"></div>
-                        </div>
+                        </div>  
                       </div>
                     </div>
                 </div>
@@ -196,4 +187,43 @@
             
           </div>
         </div>
+        <script>
+            var barChart = document.getElementById("clientBarChart").getContext("2d");
+            var myBarChart = new Chart(barChart, {
+              type: "bar",
+              data: {
+                labels: [
+                  "Jan",
+                  "Feb",
+                  "Mar",
+                  "Apr",
+                  "May",
+                  "Jun",
+                  "Jul",
+                  "Aug",
+                  "Sep",
+                  "Oct",
+                  "Nov",
+                  "Dec",
+                ],
+                datasets: [
+                  {
+                    label: "Orders",
+                    backgroundColor: "rgb(23, 125, 255)",
+                    borderColor: "rgb(23, 125, 255)",
+                    data: [3, 2, 9, 5, 4, 6, 4, 6, 7, 8, 7, 4],
+                  },
+                ],
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                  y:{
+                      beginAtZero:true
+                  }
+                },
+              },
+            });
+        </script>
         @endsection

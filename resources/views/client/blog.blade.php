@@ -1,4 +1,4 @@
-@extends('layouts.app') 
+@extends('client.layouts.app') 
 @section('title' ) Blog @endsection
 @section('content')
     <main class="main-wrapper">

@@ -3,8 +3,7 @@
 @section('content')
     @include('admin.product.modals.create')
     @include('admin.product.modals.edit')
-    <div class="container">
-        <div class="page-inner">
+
             <div class="page-header">
                 <h3 class="fw-bold mb-3">Products List</h3>
             </div>
@@ -29,7 +28,7 @@
 
                         <div class="table-responsive">
                             <table
-                            id="multi-filter-select"
+                            id="basic-datatables"
                             class="display table table-striped table-hover"
                             >
                             <thead>
@@ -42,15 +41,6 @@
                                 <th>action</th>
                                 </tr>
                             </thead>
-                            <tfoot>
-                                <tr>
-                                <th>Product Name</th>
-                                <th>Category</th>
-                                <th>Price</th>
-                                <th>Stock</th>
-                                <th>Status</th>
-                                </tr>
-                            </tfoot>
                             <tbody>
                                 @foreach($products as $product)
                                 <tr>
@@ -112,8 +102,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+
 <script>
     function populateModal(button) {
         // Retrieve product data from the button's data attributes

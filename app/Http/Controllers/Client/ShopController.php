@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use App\Models\Categorie;
+use App\Models\Product;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
 class ShopController extends Controller
 {
     public function index(Request $request){
@@ -41,9 +44,26 @@ class ShopController extends Controller
             session()->put('maxPrice',$maxPrice);
             session()->put('selectedCategories',[]);
             session()->put('filtered',0);
-            session()->put('filteredProducts',$products);
+            $filteredProducts = $products;
+            session()->put('filteredProducts',$filteredProducts);
         }
-        return view('client.shop.index');
+        // $products = Product::paginate(12);
+    
+        // Current page from request
+        $currentPage = $request->get('page', 1);
+        
+        // Slice the collection to get the items for the current page
+        $currentItems = $filteredProducts->slice(($currentPage - 1) * 12, 12)->values();
+    
+        // Create a LengthAwarePaginator instance
+        $paginatedProducts = new LengthAwarePaginator(
+            $currentItems,
+            $filteredProducts->count(),
+            12,
+            $currentPage,
+            ['path' => Paginator::resolveCurrentPath()]
+        );
+        return view('client.shop.index',['paginatedProducts' =>$paginatedProducts]);
     }
 
     public function show(Categorie $categorie){
@@ -51,12 +71,53 @@ class ShopController extends Controller
         $minPrice = $products->min('price');
         $maxPrice = $products->max('price');
         session()->put('filtered',1);
+        
         session()->put('selectedCategories',[$categorie->id]);
         $filteredProducts = $products->where('categorie_id',$categorie->id);
         session()->put('filteredProducts',$filteredProducts);
-        return view('client.shop.index');
-    }
+        
+
+        $currentPage = $request->get('page', 1);
+        
+        // Slice the collection to get the items for the current page
+        $currentItems = $filteredProducts->slice(($currentPage - 1) * 12, 12)->values();
     
+        // Create a LengthAwarePaginator instance
+        $paginatedProducts = new LengthAwarePaginator(
+            $currentItems,
+            $filteredProducts->count(),
+            12,
+            $currentPage,
+            ['path' => Paginator::resolveCurrentPath()]
+        );
+        return view('client.shop.index',['paginatedProducts' =>$paginatedProducts]);
+    }
+    public function sort(Request $request){
+        $products = session()->get('filteredProducts',collect());
+        if ($request->sort =='desc'){
+            session()->put('sorted',1);
+            $sortedProducts = $products->sortByDesc('price');
+        }else{
+            session()->put('sorted',0);
+            $sortedProducts = $products->sortBy('price');
+        }
+        session()->put('filteredProducts',$sortedProducts);
+        
+        $currentPage = $request->get('page', 1);
+        
+        // Slice the collection to get the items for the current page
+        $currentItems = $sortedProducts->slice(($currentPage - 1) * 12, 12)->values();
+    
+        // Create a LengthAwarePaginator instance
+        $paginatedProducts = new LengthAwarePaginator(
+            $currentItems,
+            $sortedProducts->count(),
+            12,
+            $currentPage,
+            ['path' => Paginator::resolveCurrentPath()]
+        );
+        return view('client.shop.index',['paginatedProducts' =>$paginatedProducts]);
+    }
 
     
 }

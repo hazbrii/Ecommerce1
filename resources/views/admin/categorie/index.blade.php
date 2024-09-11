@@ -3,8 +3,7 @@
 @section('content')
     @include('admin.categorie.modals.create')
     @include('admin.categorie.modals.edit')
-    <div class="container">
-        <div class="page-inner">
+
             <div class="page-header">
                 <h3 class="fw-bold mb-3">Categories List</h3>
             </div>
@@ -29,7 +28,7 @@
 
                         <div class="table-responsive">
                             <table
-                            id="multi-filter-select"
+                            id="categories-filter"
                             class="display table table-striped table-hover"
                             >
                             <thead>
@@ -40,13 +39,6 @@
                                     <th>action</th>
                                 </tr>
                             </thead>
-                            <tfoot>
-                                <tr>
-                                    <th>Category Name</th>
-                                    <th>Number of products</th>
-                                    <th>Status</th>
-                                </tr>
-                            </tfoot>
                             <tbody>
                                 @foreach($categories as $category)
                                 <tr>
@@ -104,8 +96,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+
 <script>
     function populateModal(button) {
         // Retrieve product data from the button's data attributes
