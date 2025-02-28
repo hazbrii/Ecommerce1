@@ -1,5 +1,5 @@
 
-@extends('layouts.master')
+@extends('auth.layouts.app')
 @section('title') Reset password @endsection
 @section('content')
 <body>

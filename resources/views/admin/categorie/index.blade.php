@@ -35,7 +35,6 @@
                                 <tr>
                                     <th>Category Name</th>
                                     <th>Number of products</th>
-                                    <th>Status</th>
                                     <th>action</th>
                                 </tr>
                             </thead>
@@ -54,7 +53,6 @@
                                           {{$category->name}}
                                     </td>
                                     <td>10</td>
-                                    <td>Verified</td>
                                     <td>
                                         <div class="form-button-action align-items-center">
                                             

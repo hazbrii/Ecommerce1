@@ -37,7 +37,7 @@
                                 <th>Category</th>
                                 <th>Price</th>
                                 <th>Stock</th>
-                                <th>Status</th>
+                                
                                 <th>action</th>
                                 </tr>
                             </thead>
@@ -58,7 +58,6 @@
                                     <td>{{$product->categorie->name}}</td>
                                     <td>{{$product->price}}DT</td>
                                     <td>{{$product->stock}}</td>
-                                    <td>Verified</td>
                                     <td>
                                         <div class="form-button-action align-items-center">
                                             <button 

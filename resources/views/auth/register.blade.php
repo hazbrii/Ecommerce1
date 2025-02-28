@@ -1,5 +1,5 @@
 
-@extends('layouts.master')
+@extends('auth.layouts.app')
 @section('title') Register @endsection
 @section('content')
 
@@ -77,12 +77,12 @@
                             </select>
                         </div>
 
-                        <div class="form-check my-5">
+                        <!-- <div class="form-check my-5">
                             <input class="form-check-input" type="checkbox"  value="1"  name="role" id='role'>
                             <label class="form-check-label" for="role">
                                 Registre for Admin : 
                             </label>
-                        </div>
+                        </div> -->
                         
                         <div class="form-group" style='display:none' id='admin-key'>
                             <label>Admin key</label>

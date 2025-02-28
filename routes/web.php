@@ -1,29 +1,23 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Client\ContactController;
 use App\Http\Controllers\ProfileController;
-use Illuminate\Http\Request;
-
 use App\Http\Controllers\Admin\CategorieController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Client\ProductController as ClientProductController;
 use App\Http\Controllers\Client\ShopController;
 use App\Http\Controllers\Client\CartController;
 use App\Http\Controllers\Client\CheckoutController;
-use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\OrderController as AdminOrderController;
+use App\Http\Controllers\Client\OrderController as ClientOrderController;
 use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\Admin\DashboardController;
 
 
-
-
-
 Route::middleware('auth')->group(function () {
-    
     Route::middleware('client')->group(function () {
         //profile i have to add verified to the others
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -44,6 +38,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/checkout', [CheckoutController::class, 'show'])->name('checkout.show');
 
         Route::post('/checkout/store', [CheckoutController::class, 'store'])->name('checkout.store');
+        //order
+        Route::get('/order', [ClientOrderController::class, 'show'])->name('order.show');
         
     });
 
@@ -78,9 +74,9 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/admin',[DashboardController::class,'show'])->name('dashboard.show');
         //orders
-        Route::get('/admin/orders',[OrderController::class,'index'])->name('orders.index');
-        Route::get('/admin/orders/{order}',[OrderController::class,'show'])->name('orders.show');
-        Route::patch('admin/orders/{order}/edit',[OrderController::class,'update'])->name('orders.update');
+        Route::get('/admin/orders',[AdminOrderController::class,'index'])->name('orders.index');
+        Route::get('/admin/orders/{order}',[AdminOrderController::class,'show'])->name('orders.show');
+        Route::patch('admin/orders/{order}/edit',[AdminOrderController::class,'update'])->name('orders.update');
         //users
         Route::get('admin/clients',[ClientController::class,'index'])->name('clients.index');
         Route::get('admin/clients/{client}',[ClientController::class,'show'])->name('clients.show');

@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('auth.layouts.app')
 @section('title') Verify email @endsection
 @section('content')
 <div class="comming-soon-area">

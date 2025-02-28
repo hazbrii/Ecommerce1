@@ -1,4 +1,4 @@
-<div class="sidebar" data-background-color="dark">
+<div class="sidebar" >
     <div class="text-center">
       <h4>Khatoun Admin</h4>
     </div>

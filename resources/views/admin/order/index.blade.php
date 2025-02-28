@@ -12,7 +12,7 @@
             <div class="card-body">
                 <div class="numbers">
                     <p class="card-category">Today's Orders</p>
-                    <h4 class="card-title">15</h4>
+                    <h4 class="card-title">10</h4>
                 </div>
             </div>
         </div>
@@ -22,7 +22,7 @@
             <div class="card-body">
                 <div class="numbers">
                     <p class="card-category"><span class="badge badge-info">Pending Orders </span></p>
-                    <h4 class="card-title">150</h4>
+                    <h4 class="card-title">20</h4>
                 </div>
             </div>
         </div>
@@ -32,7 +32,7 @@
             <div class="card-body">
                 <div class="numbers">
                     <p class="card-category"><span class="badge badge-danger">Cancelled Orders</span></p>
-                    <h4 class="card-title">150GB</h4>
+                    <h4 class="card-title">15</h4>
                 </div>
             </div>
         </div>
@@ -48,48 +48,7 @@
         </div>
     </div>
 </div>
-<div class="row">
-    <div class="col-sm-6 col-md-3">
-        <div class="card card-stats card-round">
-            <div class="card-body">
-                <div class="numbers">
-                    <p class="card-category"><span class="badge badge-success">Completed Orders</span></p>
-                    <h4 class="card-title">150</h4>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-6 col-md-3">
-        <div class="card card-stats card-round">
-            <div class="card-body">
-                <div class="numbers">
-                    <p class="card-category">Completed Orders This Week</p>
-                    <h4 class="card-title">150GB</h4>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-6 col-md-3">
-        <div class="card card-stats card-round">
-            <div class="card-body">
-                <div class="numbers">
-                    <p class="card-category">Completed Orders This Month</p>
-                    <h4 class="card-title">150GB</h4>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-6 col-md-3">
-        <div class="card card-stats card-round">
-            <div class="card-body">
-                <div class="numbers">
-                    <p class="card-category">Completed Orders This Year</p>
-                    <h4 class="card-title">150GB</h4>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
 <div class="row">
 <div class="col-md-12">
 <div class="card">
@@ -98,11 +57,11 @@
         <h4 class="card-title">Manage orders</h4>
     </div>
     <div class="col-2">
-    <button
+    <!-- <button
         class="btn btn-primary btn-round ms-auto"
         data-bs-toggle="modal"
         data-bs-target="#createProduct"
-        ><i class="fa fa-plus"></i>Add order</button>
+        ><i class="fa fa-plus"></i>Add order</button> -->
     </div>
     </div>
     <div class="card-body">

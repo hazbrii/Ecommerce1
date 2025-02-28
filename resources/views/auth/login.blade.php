@@ -1,5 +1,5 @@
 
-    @extends('layouts.master')
+    @extends('auth.layouts.app')
     @section('title') Login @endsection
     @section('content')
     <div class="axil-signin-area">
@@ -29,7 +29,7 @@
             <div class="col-lg-6 offset-xl-2">
                 <div class="axil-signin-form-wrap">
                     <div class="axil-signin-form">
-                        <h3 class="title">Sign in to eTrade.</h3>
+                        <h3 class="title">Sign in to Khatoun.</h3>
                         <p class="b2 mb--55">Enter your detail below</p>
                         
                             @if ($errors->any())
